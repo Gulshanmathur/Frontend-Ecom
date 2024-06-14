@@ -9,6 +9,9 @@ export default {
       fontFamily: {
         "bungee_spice_regular": ["Bungee Spice","sans-serif"]
       },
+      gridTemplateRows: {
+        '[auto,auto,1fr]': 'auto auto 1fr',
+      },
     },
   },
   plugins: [ require('@tailwindcss/forms'),require('@tailwindcss/aspect-ratio')],
