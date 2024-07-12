@@ -113,7 +113,7 @@ export default function ProductList() {
   const handleFilter = (e, section, option) => {
     // TODO : on server it will support multiple categories
     const newFilter = {...filter};
-    if(e.target.checked){
+    if(e.target.checked){ 
       if(newFilter[section.id]){   // if section id already exists
         newFilter[section.id].push(option.value);
       }else newFilter[section.id] = [option.value];   // if not then create empty array for upcoming category
