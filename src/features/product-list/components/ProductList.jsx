@@ -108,27 +108,30 @@ export default function ProductList() {
   const dispatch = useDispatch();
   const products = useSelector(selectAllProducts);
   const [filter, setFilter] = useState({});
+  const [sort,setSort] = useState({});
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
   const handleFilter = (e, section, option) => {
     // TODO : on server it will support multiple categories
     const newFilter = {...filter};
     if(e.target.checked){
-      newFilter[section.id] = option.value;
+      if(newFilter[section.id]){   // if section id already exists
+        newFilter[section.id].push(option.value);
+      }else newFilter[section.id] = [option.value];   // if not then create empty array for upcoming category
     }else{
-      delete newFilter[section.id];
+      const index = newFilter[section.id].findIndex(el => el===option.value) // deletion of last unchecked element   
+      newFilter[section.id].splice(index,1);
     }
+    console.log({newFilter});
     setFilter(newFilter);
-    // dispatch(fetchProductsByFiltersAsync(newFilter))
   }
   const handleSort = (e, option) => {
-    const newFilter = { ...filter, _sort: option.sort, _order: option.order };
-    setFilter(newFilter);
-    dispatch(fetchProductsByFiltersAsync(newFilter))
+    const sort = { ...filter, _sort: option.sort, _order: option.order };
+    setSort(sort);
   }
 
   useEffect(() => {
-    dispatch(fetchProductsByFiltersAsync(filter))
-  }, [dispatch,filter])
+    dispatch(fetchProductsByFiltersAsync({filter,sort}))
+  }, [dispatch,filter,sort])
 
   return (
     <div>
