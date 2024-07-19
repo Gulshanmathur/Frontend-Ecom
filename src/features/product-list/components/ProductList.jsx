@@ -1,5 +1,5 @@
 // import { useSelector, useDispatch } from "react-redux";
-import { fetchAllProductsAsync, fetchProductsByFiltersAsync, selectAllProducts } from "../productListSlice";
+import { fetchAllProductsAsync, fetchBrandsAsync, fetchCategoriesAsync, fetchProductsByFiltersAsync, selectAllProducts, selectBrands, selectCategories, selectTotalItems } from "../productListSlice";
 import { Fragment, useEffect, useState } from "react";
 import { Dialog, Disclosure, Menu, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
@@ -13,93 +13,14 @@ import {
   Squares2X2Icon,
 } from "@heroicons/react/20/solid";
 import { useDispatch, useSelector } from "react-redux";
+import { ITEMS_PER_PAGE } from "../../../app/constants";
 
 const sortOptions = [
   { name: "Best Rating", sort: "rating", order: "desc", current: false },
   { name: "Price: Low to High", sort: "price", order: "asc", current: false },
   { name: "Price: High to Low", sort: "price", order: "desc", current: false },
 ];
-const filters = [
-  {
-    id: "category",
-    name: "Category",
-    options: [
-      { value: 'beauty', label: 'beauty', checked: false },
-      { value: 'fragrances', label: 'fragrances', checked: false },
-      { value: 'furniture', label: 'furniture', checked: false },
-      { value: 'groceries', label: 'groceries', checked: false },
-      {
-        value: 'home-decoration',
-        label: 'home decoration',
-        checked: false
-      },
-      {
-        value: 'kitchen-accessories',
-        label: 'kitchen accessories',
-        checked: false
-      },
-      { value: 'laptops', label: 'laptops', checked: false },
-      { value: 'mens-shirts', label: 'mens shirts', checked: false },
-      { value: 'mens-shoes', label: 'mens shoes', checked: false },
-      { value: 'mens-watches', label: 'mens watches', checked: false },
-      {
-        value: 'mobile-accessories',
-        label: 'mobile accessories',
-        checked: false
-      }
-    ],
-  },
-  {
-    id: "Brand",
-    name: "Brands",
-    options:
-      [
-        { value: 'Essence', label: 'Essence', checked: false },
-        { value: 'Glamour Beauty', label: 'Glamour Beauty', checked: false },
-        { value: 'Velvet Touch', label: 'Velvet Touch', checked: false },
-        { value: 'Chic Cosmetics', label: 'Chic Cosmetics', checked: false },
-        { value: 'Nail Couture', label: 'Nail Couture', checked: false },
-        { value: 'Calvin Klein', label: 'Calvin Klein', checked: false },
-        { value: 'Chanel', label: 'Chanel', checked: false },
-        { value: 'Dior', label: 'Dior', checked: false },
-        {
-          value: 'Dolce & Gabbana',
-          label: 'Dolce & Gabbana',
-          checked: false
-        },
-        { value: 'Gucci', label: 'Gucci', checked: false },
-        {
-          value: 'Annibale Colombo',
-          label: 'Annibale Colombo',
-          checked: false
-        },
-        { value: 'Furniture Co.', label: 'Furniture Co.', checked: false },
-        { value: 'Knoll', label: 'Knoll', checked: false },
-        { value: 'Bath Trends', label: 'Bath Trends', checked: false },
-        { value: 'Apple', label: 'Apple', checked: false },
-        { value: 'Asus', label: 'Asus', checked: false },
-        { value: 'Huawei', label: 'Huawei', checked: false },
-        { value: 'Lenovo', label: 'Lenovo', checked: false },
-        { value: 'Dell', label: 'Dell', checked: false },
-        { value: 'Fashion Trends', label: 'Fashion Trends', checked: false },
-        { value: 'Gigabyte', label: 'Gigabyte', checked: false },
-        { value: 'Classic Wear', label: 'Classic Wear', checked: false },
-        { value: 'Casual Comfort', label: 'Casual Comfort', checked: false },
-        { value: 'Urban Chic', label: 'Urban Chic', checked: false },
-        { value: 'Nike', label: 'Nike', checked: false },
-        { value: 'Puma', label: 'Puma', checked: false },
-        { value: 'Off White', label: 'Off White', checked: false },
-        {
-          value: 'Fashion Timepieces',
-          label: 'Fashion Timepieces',
-          checked: false
-        },
-        { value: 'Longines', label: 'Longines', checked: false },
-        { value: 'Rolex', label: 'Rolex', checked: false },
-        { value: 'Amazon', label: 'Amazon', checked: false }
-      ],
-  },
-];
+
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -107,21 +28,39 @@ function classNames(...classes) {
 export default function ProductList() {
   const dispatch = useDispatch();
   const products = useSelector(selectAllProducts);
+  const totalItems = useSelector(selectTotalItems);
+  const brands =useSelector(selectBrands);
+  const categories = useSelector(selectCategories)
   const [filter, setFilter] = useState({});
-  const [sort,setSort] = useState({});
+  const [sort, setSort] = useState({});
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
+  const [page, setPage] = useState(1);
+  
+  const filters = [
+    {
+      id: "category",
+      name: "Category",
+      options: categories,
+    },
+    {
+      id: "Brand",
+      name: "Brands",
+      options: brands,
+    },
+  ];
+
   const handleFilter = (e, section, option) => {
     // TODO : on server it will support multiple categories
-    const newFilter = {...filter};
-    if(e.target.checked){ 
-      if(newFilter[section.id]){   // if section id already exists
+    const newFilter = { ...filter };
+    if (e.target.checked) {
+      if (newFilter[section.id]) {   // if section id already exists
         newFilter[section.id].push(option.value);
-      }else newFilter[section.id] = [option.value];   // if not then create empty array for upcoming category
-    }else{
-      const index = newFilter[section.id].findIndex(el => el===option.value) // deletion of last unchecked element   
-      newFilter[section.id].splice(index,1);
+      } else newFilter[section.id] = [option.value];   // if not then create empty array for upcoming category
+    } else {
+      const index = newFilter[section.id].findIndex(el => el === option.value) // deletion of last unchecked element   
+      newFilter[section.id].splice(index, 1);  // and visibility of last checked element 
     }
-    console.log({newFilter});
+    console.log({ newFilter });
     setFilter(newFilter);
   }
   const handleSort = (e, option) => {
@@ -129,16 +68,30 @@ export default function ProductList() {
     setSort(sort);
   }
 
+  const handlePage = (newpage) => {
+    console.log({page});
+    
+    setPage(newpage);
+    // setPagination(pagination1);
+  }
   useEffect(() => {
-    dispatch(fetchProductsByFiltersAsync({filter,sort}))
-  }, [dispatch,filter,sort])
+    //_per_page
+    const pagination = { _page: page, _per_page: ITEMS_PER_PAGE }
+    dispatch(fetchProductsByFiltersAsync({ filter, sort,pagination }))
+  }, [dispatch, filter, sort, page])
+
+  useEffect(() => {
+    dispatch(fetchBrandsAsync());
+    dispatch(fetchCategoriesAsync());
+  },[])
+  
 
   return (
     <div>
       <div className="bg-white">
         <div>
           {/* Mobile filter dialog */}
-          <MobileFilter setMobileFiltersOpen={setMobileFiltersOpen} mobileFiltersOpen={mobileFiltersOpen} handleFilter={handleFilter} />
+          <MobileFilter filters = {filters} setMobileFiltersOpen={setMobileFiltersOpen} mobileFiltersOpen={mobileFiltersOpen} handleFilter={handleFilter} />
 
           <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="flex items-baseline justify-between border-b border-gray-200 pb-6 pt-8">
@@ -219,7 +172,7 @@ export default function ProductList() {
 
               <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4">
                 {/* Filters */}
-                <DesktopFilter handleFilter={handleFilter} />
+                <DesktopFilter filters={filters} handleFilter={handleFilter} />
 
                 <div className="lg:col-span-3">
                   {/* This is product list */}
@@ -228,7 +181,7 @@ export default function ProductList() {
               </div>
             </section>
             {/* the pagination part start from here */}
-            <Pagination></Pagination>
+            <Pagination page={page} setPage={setPage} handlePage={handlePage} totalItems={totalItems} />
           </main>
         </div>
       </div>
@@ -236,7 +189,7 @@ export default function ProductList() {
   );
 }
 
-function MobileFilter({ mobileFiltersOpen, setMobileFiltersOpen, handleFilter }) {
+function MobileFilter({filters, mobileFiltersOpen, setMobileFiltersOpen, handleFilter }) {
 
   return (<>
     <Transition.Root show={mobileFiltersOpen} as={Fragment}>
@@ -350,7 +303,7 @@ function MobileFilter({ mobileFiltersOpen, setMobileFiltersOpen, handleFilter })
     </Transition.Root>
   </>);
 }
-function DesktopFilter({ handleFilter }) {
+function DesktopFilter({filters, handleFilter }) {
   return (
     <>
       <form className="hidden lg:block">
@@ -416,7 +369,8 @@ function DesktopFilter({ handleFilter }) {
 
     </>);
 }
-function Pagination() {
+function Pagination({ page, setPage, handlePage, totalItems }) {
+  const totalPages = Math.ceil(totalItems / ITEMS_PER_PAGE);
   return (
     <div className="flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6">
       <div className="flex flex-1 justify-between sm:hidden">
@@ -436,49 +390,42 @@ function Pagination() {
       <div className="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
         <div>
           <p className="text-sm text-gray-700">
-            Showing <span className="font-medium">1</span> to <span className="font-medium">10</span> of{' '}
-            <span className="font-medium">97</span> results
+            Showing <span className="font-medium">{(page - 1) * ITEMS_PER_PAGE + 1}</span> to <span className="font-medium">{page * ITEMS_PER_PAGE}</span> of{' '}
+            <span className="font-medium">{totalItems}</span> results
           </p>
         </div>
         <div>
           <nav className="isolate inline-flex -space-x-px rounded-md shadow-sm" aria-label="Pagination">
-            <a
-              href="#"
-              className="relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
+            <div
+              onClick={()=> handlePage(page > 1 ? page- 1 : page)}
+              className="relative inline-flex cursor-pointer items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
             >
               <span className="sr-only">Previous</span>
               <ChevronLeftIcon className="h-5 w-5" aria-hidden="true" />
-            </a>
+            </div>
             {/* Current: "z-10 bg-indigo-600 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600", Default: "text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:outline-offset-0" */}
-            <a
-              href="#"
-              aria-current="page"
-              className="relative z-10 inline-flex items-center bg-indigo-600 px-4 py-2 text-sm font-semibold text-white focus:z-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-            >
-              1
-            </a>
-            <a
-              href="#"
-              className="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
-            >
-              2
-            </a>
-            <a
-              href="#"
-              className="relative hidden items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0 md:inline-flex"
-            >
-              3
-            </a>
-            <span className="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-700 ring-1 ring-inset ring-gray-300 focus:outline-offset-0">
-              ...
-            </span>
-            <a
-              href="#"
-              className="relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
+
+            {Array.from({ length: totalPages }).map(
+              (el, index) => (
+                <div
+                  key={index}
+                  onClick={() => handlePage(index + 1)}
+                  aria-current="page"
+                  className={`relative z-10 inline-flex items-center ${index + 1 ===page ?'bg-indigo-600 text-white' : 'text-gray-400' } cursor-pointer  px-4 py-2 text-sm 
+                       font-semibold focus:z-20 focus-visible:outline focus-visible:outline-2 
+                       focus-visible:outline-offset-2 focus-visible:outline-indigo-600`}
+                >
+                  {index + 1}
+                </div>
+              )
+            )}
+            <div
+              onClick={()=> handlePage(page < totalPages ? page+ 1 : page)}
+              className="relative inline-flex items-center rounded-r-md cursor-pointer px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
             >
               <span className="sr-only">Next</span>
               <ChevronRightIcon className="h-5 w-5" aria-hidden="true" />
-            </a>
+            </div>
           </nav>
         </div>
       </div>
@@ -491,8 +438,8 @@ function ProductGrid({ products }) {
       <div className="bg-white">
         <div className="mx-auto max-w-2xl px-4 py-0 sm:px-6 sm:py-0 lg:max-w-7xl lg:px-8">
           <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
-            {products?.map((product) => (
-              <Link to="/product-detail" key={product.id} >
+            {products.data?.map((product) => (
+              <Link to={`/product-detail/${product.id}`} key={product.id} >
                 <div key={product.id} className="group relative border-2 p-0.5 border-solid border-gray-200">
                   <div className="min-h-60 aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-60">
                     <img
