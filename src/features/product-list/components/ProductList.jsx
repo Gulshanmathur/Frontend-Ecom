@@ -1,5 +1,5 @@
 // import { useSelector, useDispatch } from "react-redux";
-import { fetchAllProductsAsync, fetchBrandsAsync, fetchCategoriesAsync, fetchProductsByFiltersAsync, selectAllProducts, selectBrands, selectCategories, selectTotalItems } from "../productListSlice";
+import {fetchBrandsAsync, fetchCategoriesAsync, fetchProductsByFiltersAsync, selectAllProducts, selectBrands, selectCategories, selectTotalItems } from "../productListSlice";
 import { Fragment, useEffect, useState } from "react";
 import { Dialog, Disclosure, Menu, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
@@ -51,6 +51,7 @@ export default function ProductList() {
 
   const handleFilter = (e, section, option) => {
     // TODO : on server it will support multiple categories
+    console.log({section},{option});
     const newFilter = { ...filter };
     if (e.target.checked) {
       if (newFilter[section.id]) {   // if section id already exists
@@ -60,11 +61,12 @@ export default function ProductList() {
       const index = newFilter[section.id].findIndex(el => el === option.value) // deletion of last unchecked element   
       newFilter[section.id].splice(index, 1);  // and visibility of last checked element 
     }
-    console.log({ newFilter });
     setFilter(newFilter);
+    // console.log({ filter });
   }
   const handleSort = (e, option) => {
-    const sort = { ...filter, _sort: option.sort, _order: option.order };
+    // FOR: sorting the item rating and price based;
+    const sort = { ...filter, _sort: option.sort, _order: option.order };  
     setSort(sort);
   }
 
@@ -81,8 +83,8 @@ export default function ProductList() {
   }, [dispatch, filter, sort, page])
 
   useEffect(() => {
-    dispatch(fetchBrandsAsync());
-    dispatch(fetchCategoriesAsync());
+    dispatch(fetchBrandsAsync());  // for fetching the brands name into the product Menu Section
+    dispatch(fetchCategoriesAsync()); // for fetching the categories name into the product Menu Section
   },[])
   
 

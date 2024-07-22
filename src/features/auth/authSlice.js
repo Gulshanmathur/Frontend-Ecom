@@ -11,7 +11,6 @@ export const createUserAsync = createAsyncThunk(
   async (userData) => {
      
     const response = await createUser(userData);
-    console.log({response});
     return response.data;
   }
 );
@@ -20,7 +19,6 @@ export const checkUserAsync = createAsyncThunk(
   async (loginInfo) => {
      
     const response = await checkUser(loginInfo);
-    console.log({response});
     return response.data;
   }
 );
