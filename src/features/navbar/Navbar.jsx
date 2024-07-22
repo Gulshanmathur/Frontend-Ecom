@@ -1,7 +1,7 @@
 import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon,ShoppingCartIcon } from '@heroicons/react/24/outline'
-import { NavLink } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 /* eslint-disable react/prop-types */
 const user = {
   name: 'Tom Cook',
@@ -13,9 +13,9 @@ const navigation = [
   { name: 'Products', href: '#', current: true },
 ]
 const userNavigation = [
-  { name: 'Your Profile', href: '#' },
-  { name: 'Settings', href: '#' },
-  { name: 'Sign out', href: '#' },
+  { name: 'Your Profile', link: '/' },
+  { name: 'Settings', link: '/' },
+  { name: 'Sign out', link: '/login' },
 ]
 
 function classNames(...classes) {
@@ -97,15 +97,15 @@ function Navbar({children}) {
                             {userNavigation.map((item) => (
                               <Menu.Item key={item.name}>
                                 {({ active }) => (
-                                  <a
-                                    href={item.href}
+                                  <Link
+                                    href={item.link} 
                                     className={classNames(
                                       active ? 'bg-gray-100' : '',
                                       'block px-4 py-2 text-sm text-gray-700'
                                     )}
                                   >
                                     {item.name}
-                                  </a>
+                                  </Link>
                                 )}
                               </Menu.Item>
                             ))}
