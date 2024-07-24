@@ -1,47 +1,89 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { fetchCount } from './cartAPI';
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { addToCart, deleteItemFromCart, fetchItemsByUserId, updateCart } from "./cartAPI";
 
 const initialState = {
-  value: 0,
-  status: 'idle',
+  status: "idle",
+  items: [],
 };
-export const incrementAsync = createAsyncThunk(
-  'counter/fetchCount',
-  async (amount) => {
-    const response = await fetchCount(amount);
+export const addToCartAsync = createAsyncThunk(
+  "cart/addToCart",
+  async (item) => {
+    // item coming from frontend and add into data.json file via
+    const response = await addToCart(item);
     return response.data;
   }
 );
 
-export const counterSlice = createSlice({
-  name: 'counter',
+export const fetchItemsByUserIdAsync = createAsyncThunk(
+  "cart/fetchItemsByUserIdAsync",
+  async (userId) => {
+    // item coming from frontend and add into data.json file via
+    const response = await fetchItemsByUserId(userId);
+    return response.data;
+  }
+);
+
+export const updateCartAsync = createAsyncThunk(
+  "cartItems/updateCart",
+  async (update) => {
+    // item coming from frontend and add into data.json file via
+    const response = await updateCart(update);
+    return response.data;
+  }
+);
+
+export const deleteItemFromCartAsync = createAsyncThunk(
+  "cart/deleteItemFromCart",
+  async (itemId) => {
+    // item coming from frontend and add into data.json file via
+    const response = await deleteItemFromCart(itemId);
+    return response.data;
+  }
+);
+
+export const cartSlice = createSlice({
+  name: "cart",
   initialState,
-  reducers: {
-    increment: (state) => {
-      state.value += 1;
-    },
-    decrement: (state) => {
-      state.value -= 1;
-    },
-    // Use the PayloadAction type to declare the contents of `action.payload`
-    incrementByAmount: (state, action) => {
-      state.value += action.payload;
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(incrementAsync.pending, (state) => {
-        state.status = 'loading';
+      .addCase(addToCartAsync.pending, (state) => {
+        state.status = "loading";
       })
-      .addCase(incrementAsync.fulfilled, (state, action) => {
-        state.status = 'idle';
-        state.value += action.payload;
+      .addCase(addToCartAsync.fulfilled, (state, action) => {
+        state.status = "idle";
+        state.items.push(action.payload);
+      })
+      .addCase(fetchItemsByUserIdAsync.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(fetchItemsByUserIdAsync.fulfilled, (state, action) => {
+        state.status = "idle";
+        state.items = action.payload;
+      })
+      .addCase(updateCartAsync.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(updateCartAsync.fulfilled, (state, action) => {
+        state.status = "idle";
+        const index = state.items.findIndex(
+          (item) => item.id === action.payload.id
+        );
+        state.items[index] = action.payload;
+      })
+      .addCase(deleteItemFromCartAsync.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(deleteItemFromCartAsync.fulfilled, (state, action) => {
+        state.status = "idle";
+        const index = state.items.findIndex(
+          (item) => item.id === action.payload.id
+        );
+        state.items.splice(index,1);
       });
   },
 });
 
-export const { increment } = counterSlice.actions;
+export const selectItems = (state) => state.cart.items;
 
-export const selectCount = (state) => state.counter.value;
-
-export default counterSlice.reducer;
+export default cartSlice.reducer;

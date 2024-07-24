@@ -32,16 +32,14 @@ export async function fetchProductsByFilter(filter,sort,pagination) {
   // TODO : on server support multiple values in filter
   let queryString = "";
   
-  console.log({filter});
   for (let key in filter) {
     const categoryValues = filter[key];
-    console.log({categoryValues});
     if (categoryValues.length > 0) {
       const lastCategoryValue = categoryValues[categoryValues.length - 1];
       queryString += `${key}=${lastCategoryValue}&`;
     }
   }
-  console.log({queryString});
+
   for(let key in sort){
     queryString += `${key}=${sort[key]}&`;
   }
