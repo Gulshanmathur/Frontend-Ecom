@@ -2,8 +2,9 @@
 // import { Dialog, Transition } from "@headlessui/react";
 
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { Navigate, NavLink } from "react-router-dom";
 import { deleteItemFromCartAsync, selectItems, updateCartAsync } from "./cartSlice";
+import { useId } from "react";
 
 // import { XMarkIcon } from "@heroicons/react/24/outline";
 // const products = [
@@ -34,18 +35,21 @@ import { deleteItemFromCartAsync, selectItems, updateCartAsync } from "./cartSli
 //   // More products...
 // ];
 export default function Cart() {
+  let _idUnique = useId();
+  _idUnique = Number(_idUnique);
   const dispatch = useDispatch();
   const items = useSelector(selectItems);
   const totalAmount = items.reduce((amount, item)=> item.price * item.quentity + amount,0);
   const totalItems = items.reduce((total,item)=> item.quentity + total, 0 );
   const handleQuantity = (e,item)=>{
-    console.log(item);
     dispatch (updateCartAsync({...item,quentity: +e.target.value}))
   }
   function handleRemove(e,id){
      dispatch(deleteItemFromCartAsync(id));
   }
   return (
+    <>
+    {!items.length && <Navigate to={"/"} replace = {true}></Navigate>}
     <div className="mx-auto bg-white max-w-7xl px-4 sm:px-6 lg:px-8">
       <div className="mt-8">
         <h1 className=" text-3xl font-bold p-3 sm:my-2 tracking-tight text-gray-900">
@@ -54,7 +58,7 @@ export default function Cart() {
         <div className="flow-root">
           <ul role="list" className="-my-6 divide-y divide-gray-200">
             {items?.map((item) => (
-              <li key={item.id} className="flex py-6">
+              <li key={item.id* _idUnique} className="flex py-6">
                 <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                   <img
                     src={item.thumbnail}
@@ -145,5 +149,6 @@ export default function Cart() {
         </div>
       </div>
     </div>
+    </>
   );
 }
