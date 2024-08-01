@@ -6290,16 +6290,6 @@
           "state": "Delhi",
           "pincode": "110085",
           "phone": "09315691962"
-        },
-        {
-          "name": "gulshan",
-          "email": "nikita.03.apr.1999@gmail.com",
-          "country": "India",
-          "street": "A-290 vijay vihar phase 1 rohini near sec-5, flat no.6",
-          "city": "Delhi",
-          "state": "Delhi",
-          "pincode": "110085",
-          "phone": "09315691962"
         }
       ]
     },
@@ -6312,260 +6302,436 @@
   ],
   "cart": [
     {
-      "id": "16ce",
-      "title": "Eyeshadow Palette with Mirror",
-      "description": "The Eyeshadow Palette with Mirror offers a versatile range of eyeshadow shades for creating stunning eye looks. With a built-in mirror, it's convenient for on-the-go makeup application.",
+      "id": "d722",
+      "title": "Essence Mascara Lash Princess",
+      "description": "The Essence Mascara Lash Princess is a popular mascara known for its volumizing and lengthening effects. Achieve dramatic lashes with this long-lasting and cruelty-free formula.",
       "category": "beauty",
-      "price": 19.99,
-      "discountPercentage": 5.5,
-      "rating": 3.28,
-      "stock": 44,
+      "price": 9.99,
+      "discountPercentage": 7.17,
+      "rating": 4.94,
+      "stock": 5,
       "tags": [
         "beauty",
-        "eyeshadow"
+        "mascara"
       ],
-      "brand": "Glamour Beauty",
-      "sku": "MVCFH27F",
-      "weight": 3,
+      "brand": "Essence",
+      "sku": "RCH45Q1A",
+      "weight": 2,
       "dimensions": {
-        "width": 12.42,
-        "height": 8.63,
-        "depth": 29.13
+        "width": 23.17,
+        "height": 14.43,
+        "depth": 28.01
       },
-      "warrantyInformation": "1 year warranty",
-      "shippingInformation": "Ships in 2 weeks",
-      "availabilityStatus": "In Stock",
+      "warrantyInformation": "1 month warranty",
+      "shippingInformation": "Ships in 1 month",
+      "availabilityStatus": "Low Stock",
       "reviews": [
         {
-          "rating": 4,
-          "comment": "Very satisfied!",
+          "rating": 2,
+          "comment": "Very unhappy with my purchase!",
           "date": "2024-05-23T08:56:21.618Z",
-          "reviewerName": "Liam Garcia",
-          "reviewerEmail": "liam.garcia@x.dummyjson.com"
+          "reviewerName": "John Doe",
+          "reviewerEmail": "john.doe@x.dummyjson.com"
         },
         {
-          "rating": 1,
-          "comment": "Very disappointed!",
+          "rating": 2,
+          "comment": "Not as described!",
           "date": "2024-05-23T08:56:21.618Z",
-          "reviewerName": "Nora Russell",
-          "reviewerEmail": "nora.russell@x.dummyjson.com"
+          "reviewerName": "Nolan Gonzalez",
+          "reviewerEmail": "nolan.gonzalez@x.dummyjson.com"
         },
         {
           "rating": 5,
-          "comment": "Highly impressed!",
+          "comment": "Very satisfied!",
           "date": "2024-05-23T08:56:21.618Z",
-          "reviewerName": "Elena Baker",
-          "reviewerEmail": "elena.baker@x.dummyjson.com"
+          "reviewerName": "Scarlett Wright",
+          "reviewerEmail": "scarlett.wright@x.dummyjson.com"
         }
       ],
       "returnPolicy": "30 days return policy",
-      "minimumOrderQuantity": 32,
+      "minimumOrderQuantity": 24,
       "meta": {
         "createdAt": "2024-05-23T08:56:21.618Z",
         "updatedAt": "2024-05-23T08:56:21.618Z",
-        "barcode": "2817839095220",
+        "barcode": "9164035109868",
         "qrCode": "https://dummyjson.com/public/qr-code.png"
       },
       "images": [
-        "https://cdn.dummyjson.com/products/images/beauty/Eyeshadow%20Palette%20with%20Mirror/1.png"
+        "https://cdn.dummyjson.com/products/images/beauty/Essence%20Mascara%20Lash%20Princess/1.png"
       ],
-      "thumbnail": "https://cdn.dummyjson.com/products/images/beauty/Eyeshadow%20Palette%20with%20Mirror/thumbnail.png",
+      "thumbnail": "https://cdn.dummyjson.com/products/images/beauty/Essence%20Mascara%20Lash%20Princess/thumbnail.png",
       "quentity": 1,
       "user": "b91f"
     },
     {
-      "id": "4701",
-      "title": "Eyeshadow Palette with Mirror",
-      "description": "The Eyeshadow Palette with Mirror offers a versatile range of eyeshadow shades for creating stunning eye looks. With a built-in mirror, it's convenient for on-the-go makeup application.",
-      "category": "beauty",
-      "price": 19.99,
-      "discountPercentage": 5.5,
-      "rating": 3.28,
-      "stock": 44,
+      "id": "8f5f",
+      "title": "Dior J'adore",
+      "description": "J'adore by Dior is a luxurious and floral fragrance, known for its blend of ylang-ylang, rose, and jasmine. It embodies femininity and sophistication.",
+      "category": "fragrances",
+      "price": 89.99,
+      "discountPercentage": 17.44,
+      "rating": 3.31,
+      "stock": 91,
       "tags": [
-        "beauty",
-        "eyeshadow"
+        "fragrances",
+        "perfumes"
       ],
-      "brand": "Glamour Beauty",
-      "sku": "MVCFH27F",
-      "weight": 3,
+      "brand": "Dior",
+      "sku": "E70NB03B",
+      "weight": 10,
       "dimensions": {
-        "width": 12.42,
-        "height": 8.63,
-        "depth": 29.13
+        "width": 21.51,
+        "height": 7,
+        "depth": 26.51
       },
-      "warrantyInformation": "1 year warranty",
+      "warrantyInformation": "Lifetime warranty",
       "shippingInformation": "Ships in 2 weeks",
       "availabilityStatus": "In Stock",
       "reviews": [
         {
-          "rating": 4,
-          "comment": "Very satisfied!",
-          "date": "2024-05-23T08:56:21.618Z",
-          "reviewerName": "Liam Garcia",
-          "reviewerEmail": "liam.garcia@x.dummyjson.com"
-        },
-        {
-          "rating": 1,
-          "comment": "Very disappointed!",
-          "date": "2024-05-23T08:56:21.618Z",
-          "reviewerName": "Nora Russell",
-          "reviewerEmail": "nora.russell@x.dummyjson.com"
-        },
-        {
           "rating": 5,
-          "comment": "Highly impressed!",
-          "date": "2024-05-23T08:56:21.618Z",
-          "reviewerName": "Elena Baker",
-          "reviewerEmail": "elena.baker@x.dummyjson.com"
+          "comment": "Fast shipping!",
+          "date": "2024-05-23T08:56:21.619Z",
+          "reviewerName": "Zoe Nicholson",
+          "reviewerEmail": "zoe.nicholson@x.dummyjson.com"
+        },
+        {
+          "rating": 4,
+          "comment": "Excellent quality!",
+          "date": "2024-05-23T08:56:21.619Z",
+          "reviewerName": "Addison Wright",
+          "reviewerEmail": "addison.wright@x.dummyjson.com"
+        },
+        {
+          "rating": 4,
+          "comment": "Would buy again!",
+          "date": "2024-05-23T08:56:21.619Z",
+          "reviewerName": "Clara Berry",
+          "reviewerEmail": "clara.berry@x.dummyjson.com"
         }
       ],
-      "returnPolicy": "30 days return policy",
-      "minimumOrderQuantity": 32,
+      "returnPolicy": "7 days return policy",
+      "minimumOrderQuantity": 8,
       "meta": {
-        "createdAt": "2024-05-23T08:56:21.618Z",
-        "updatedAt": "2024-05-23T08:56:21.618Z",
-        "barcode": "2817839095220",
+        "createdAt": "2024-05-23T08:56:21.619Z",
+        "updatedAt": "2024-05-23T08:56:21.619Z",
+        "barcode": "0887083199279",
         "qrCode": "https://dummyjson.com/public/qr-code.png"
       },
       "images": [
-        "https://cdn.dummyjson.com/products/images/beauty/Eyeshadow%20Palette%20with%20Mirror/1.png"
+        "https://cdn.dummyjson.com/products/images/fragrances/Dior%20J'adore/1.png",
+        "https://cdn.dummyjson.com/products/images/fragrances/Dior%20J'adore/2.png",
+        "https://cdn.dummyjson.com/products/images/fragrances/Dior%20J'adore/3.png"
       ],
-      "thumbnail": "https://cdn.dummyjson.com/products/images/beauty/Eyeshadow%20Palette%20with%20Mirror/thumbnail.png",
+      "thumbnail": "https://cdn.dummyjson.com/products/images/fragrances/Dior%20J'adore/thumbnail.png",
       "quentity": 1,
       "user": "b91f"
     }
   ],
   "orders": [
     {
-      "id": "e37b",
+      "id": "5176",
       "items": [
         {
-          "id": "16ce",
-          "title": "Eyeshadow Palette with Mirror",
-          "description": "The Eyeshadow Palette with Mirror offers a versatile range of eyeshadow shades for creating stunning eye looks. With a built-in mirror, it's convenient for on-the-go makeup application.",
+          "id": "d722",
+          "title": "Essence Mascara Lash Princess",
+          "description": "The Essence Mascara Lash Princess is a popular mascara known for its volumizing and lengthening effects. Achieve dramatic lashes with this long-lasting and cruelty-free formula.",
           "category": "beauty",
-          "price": 19.99,
-          "discountPercentage": 5.5,
-          "rating": 3.28,
-          "stock": 44,
+          "price": 9.99,
+          "discountPercentage": 7.17,
+          "rating": 4.94,
+          "stock": 5,
           "tags": [
             "beauty",
-            "eyeshadow"
+            "mascara"
           ],
-          "brand": "Glamour Beauty",
-          "sku": "MVCFH27F",
-          "weight": 3,
+          "brand": "Essence",
+          "sku": "RCH45Q1A",
+          "weight": 2,
           "dimensions": {
-            "width": 12.42,
-            "height": 8.63,
-            "depth": 29.13
+            "width": 23.17,
+            "height": 14.43,
+            "depth": 28.01
           },
-          "warrantyInformation": "1 year warranty",
-          "shippingInformation": "Ships in 2 weeks",
-          "availabilityStatus": "In Stock",
+          "warrantyInformation": "1 month warranty",
+          "shippingInformation": "Ships in 1 month",
+          "availabilityStatus": "Low Stock",
           "reviews": [
             {
-              "rating": 4,
-              "comment": "Very satisfied!",
+              "rating": 2,
+              "comment": "Very unhappy with my purchase!",
               "date": "2024-05-23T08:56:21.618Z",
-              "reviewerName": "Liam Garcia",
-              "reviewerEmail": "liam.garcia@x.dummyjson.com"
+              "reviewerName": "John Doe",
+              "reviewerEmail": "john.doe@x.dummyjson.com"
             },
             {
-              "rating": 1,
-              "comment": "Very disappointed!",
+              "rating": 2,
+              "comment": "Not as described!",
               "date": "2024-05-23T08:56:21.618Z",
-              "reviewerName": "Nora Russell",
-              "reviewerEmail": "nora.russell@x.dummyjson.com"
+              "reviewerName": "Nolan Gonzalez",
+              "reviewerEmail": "nolan.gonzalez@x.dummyjson.com"
             },
             {
               "rating": 5,
-              "comment": "Highly impressed!",
+              "comment": "Very satisfied!",
               "date": "2024-05-23T08:56:21.618Z",
-              "reviewerName": "Elena Baker",
-              "reviewerEmail": "elena.baker@x.dummyjson.com"
+              "reviewerName": "Scarlett Wright",
+              "reviewerEmail": "scarlett.wright@x.dummyjson.com"
             }
           ],
           "returnPolicy": "30 days return policy",
-          "minimumOrderQuantity": 32,
+          "minimumOrderQuantity": 24,
           "meta": {
             "createdAt": "2024-05-23T08:56:21.618Z",
             "updatedAt": "2024-05-23T08:56:21.618Z",
-            "barcode": "2817839095220",
+            "barcode": "9164035109868",
             "qrCode": "https://dummyjson.com/public/qr-code.png"
           },
           "images": [
-            "https://cdn.dummyjson.com/products/images/beauty/Eyeshadow%20Palette%20with%20Mirror/1.png"
+            "https://cdn.dummyjson.com/products/images/beauty/Essence%20Mascara%20Lash%20Princess/1.png"
           ],
-          "thumbnail": "https://cdn.dummyjson.com/products/images/beauty/Eyeshadow%20Palette%20with%20Mirror/thumbnail.png",
+          "thumbnail": "https://cdn.dummyjson.com/products/images/beauty/Essence%20Mascara%20Lash%20Princess/thumbnail.png",
           "quentity": 1,
           "user": "b91f"
         },
         {
-          "id": "4701",
-          "title": "Eyeshadow Palette with Mirror",
-          "description": "The Eyeshadow Palette with Mirror offers a versatile range of eyeshadow shades for creating stunning eye looks. With a built-in mirror, it's convenient for on-the-go makeup application.",
-          "category": "beauty",
-          "price": 19.99,
-          "discountPercentage": 5.5,
-          "rating": 3.28,
-          "stock": 44,
+          "id": "8f5f",
+          "title": "Dior J'adore",
+          "description": "J'adore by Dior is a luxurious and floral fragrance, known for its blend of ylang-ylang, rose, and jasmine. It embodies femininity and sophistication.",
+          "category": "fragrances",
+          "price": 89.99,
+          "discountPercentage": 17.44,
+          "rating": 3.31,
+          "stock": 91,
           "tags": [
-            "beauty",
-            "eyeshadow"
+            "fragrances",
+            "perfumes"
           ],
-          "brand": "Glamour Beauty",
-          "sku": "MVCFH27F",
-          "weight": 3,
+          "brand": "Dior",
+          "sku": "E70NB03B",
+          "weight": 10,
           "dimensions": {
-            "width": 12.42,
-            "height": 8.63,
-            "depth": 29.13
+            "width": 21.51,
+            "height": 7,
+            "depth": 26.51
           },
-          "warrantyInformation": "1 year warranty",
+          "warrantyInformation": "Lifetime warranty",
           "shippingInformation": "Ships in 2 weeks",
           "availabilityStatus": "In Stock",
           "reviews": [
             {
-              "rating": 4,
-              "comment": "Very satisfied!",
-              "date": "2024-05-23T08:56:21.618Z",
-              "reviewerName": "Liam Garcia",
-              "reviewerEmail": "liam.garcia@x.dummyjson.com"
-            },
-            {
-              "rating": 1,
-              "comment": "Very disappointed!",
-              "date": "2024-05-23T08:56:21.618Z",
-              "reviewerName": "Nora Russell",
-              "reviewerEmail": "nora.russell@x.dummyjson.com"
-            },
-            {
               "rating": 5,
-              "comment": "Highly impressed!",
-              "date": "2024-05-23T08:56:21.618Z",
-              "reviewerName": "Elena Baker",
-              "reviewerEmail": "elena.baker@x.dummyjson.com"
+              "comment": "Fast shipping!",
+              "date": "2024-05-23T08:56:21.619Z",
+              "reviewerName": "Zoe Nicholson",
+              "reviewerEmail": "zoe.nicholson@x.dummyjson.com"
+            },
+            {
+              "rating": 4,
+              "comment": "Excellent quality!",
+              "date": "2024-05-23T08:56:21.619Z",
+              "reviewerName": "Addison Wright",
+              "reviewerEmail": "addison.wright@x.dummyjson.com"
+            },
+            {
+              "rating": 4,
+              "comment": "Would buy again!",
+              "date": "2024-05-23T08:56:21.619Z",
+              "reviewerName": "Clara Berry",
+              "reviewerEmail": "clara.berry@x.dummyjson.com"
             }
           ],
-          "returnPolicy": "30 days return policy",
-          "minimumOrderQuantity": 32,
+          "returnPolicy": "7 days return policy",
+          "minimumOrderQuantity": 8,
           "meta": {
-            "createdAt": "2024-05-23T08:56:21.618Z",
-            "updatedAt": "2024-05-23T08:56:21.618Z",
-            "barcode": "2817839095220",
+            "createdAt": "2024-05-23T08:56:21.619Z",
+            "updatedAt": "2024-05-23T08:56:21.619Z",
+            "barcode": "0887083199279",
             "qrCode": "https://dummyjson.com/public/qr-code.png"
           },
           "images": [
-            "https://cdn.dummyjson.com/products/images/beauty/Eyeshadow%20Palette%20with%20Mirror/1.png"
+            "https://cdn.dummyjson.com/products/images/fragrances/Dior%20J'adore/1.png",
+            "https://cdn.dummyjson.com/products/images/fragrances/Dior%20J'adore/2.png",
+            "https://cdn.dummyjson.com/products/images/fragrances/Dior%20J'adore/3.png"
           ],
-          "thumbnail": "https://cdn.dummyjson.com/products/images/beauty/Eyeshadow%20Palette%20with%20Mirror/thumbnail.png",
+          "thumbnail": "https://cdn.dummyjson.com/products/images/fragrances/Dior%20J'adore/thumbnail.png",
           "quentity": 1,
           "user": "b91f"
         }
       ],
-      "totalAmount": 39.98,
+      "totalAmount": 99.97999999999999,
+      "totalItems": 2,
+      "user": {
+        "id": "b91f",
+        "email": "nikita.03.apr.1999@gmail.com",
+        "password": "Qwerty@123",
+        "addresses": [
+          {
+            "name": "gulshan",
+            "email": "nikita.03.apr.1999@gmail.com",
+            "country": "India",
+            "street": "A-290 vijay vihar phase 1 rohini near sec-5, flat no.6",
+            "city": "Delhi",
+            "state": "Delhi",
+            "pincode": "110085",
+            "phone": "09315691962"
+          },
+          {
+            "name": "gulshan",
+            "email": "nikita.03.apr.1999@gmail.com",
+            "country": "India",
+            "street": "A-290 vijay vihar phase 1 rohini near sec-5, flat no.6",
+            "city": "Delhi",
+            "state": "Delhi",
+            "pincode": "110085",
+            "phone": "09315691962"
+          }
+        ]
+      },
+      "paymentMethod": "cash",
+      "selectedAddress": {
+        "name": "gulshan",
+        "email": "nikita.03.apr.1999@gmail.com",
+        "country": "India",
+        "street": "A-290 vijay vihar phase 1 rohini near sec-5, flat no.6",
+        "city": "Delhi",
+        "state": "Delhi",
+        "pincode": "110085",
+        "phone": "09315691962"
+      },
+      "status": "pending"
+    },
+    {
+      "id": "bc21",
+      "items": [
+        {
+          "id": "d722",
+          "title": "Essence Mascara Lash Princess",
+          "description": "The Essence Mascara Lash Princess is a popular mascara known for its volumizing and lengthening effects. Achieve dramatic lashes with this long-lasting and cruelty-free formula.",
+          "category": "beauty",
+          "price": 9.99,
+          "discountPercentage": 7.17,
+          "rating": 4.94,
+          "stock": 5,
+          "tags": [
+            "beauty",
+            "mascara"
+          ],
+          "brand": "Essence",
+          "sku": "RCH45Q1A",
+          "weight": 2,
+          "dimensions": {
+            "width": 23.17,
+            "height": 14.43,
+            "depth": 28.01
+          },
+          "warrantyInformation": "1 month warranty",
+          "shippingInformation": "Ships in 1 month",
+          "availabilityStatus": "Low Stock",
+          "reviews": [
+            {
+              "rating": 2,
+              "comment": "Very unhappy with my purchase!",
+              "date": "2024-05-23T08:56:21.618Z",
+              "reviewerName": "John Doe",
+              "reviewerEmail": "john.doe@x.dummyjson.com"
+            },
+            {
+              "rating": 2,
+              "comment": "Not as described!",
+              "date": "2024-05-23T08:56:21.618Z",
+              "reviewerName": "Nolan Gonzalez",
+              "reviewerEmail": "nolan.gonzalez@x.dummyjson.com"
+            },
+            {
+              "rating": 5,
+              "comment": "Very satisfied!",
+              "date": "2024-05-23T08:56:21.618Z",
+              "reviewerName": "Scarlett Wright",
+              "reviewerEmail": "scarlett.wright@x.dummyjson.com"
+            }
+          ],
+          "returnPolicy": "30 days return policy",
+          "minimumOrderQuantity": 24,
+          "meta": {
+            "createdAt": "2024-05-23T08:56:21.618Z",
+            "updatedAt": "2024-05-23T08:56:21.618Z",
+            "barcode": "9164035109868",
+            "qrCode": "https://dummyjson.com/public/qr-code.png"
+          },
+          "images": [
+            "https://cdn.dummyjson.com/products/images/beauty/Essence%20Mascara%20Lash%20Princess/1.png"
+          ],
+          "thumbnail": "https://cdn.dummyjson.com/products/images/beauty/Essence%20Mascara%20Lash%20Princess/thumbnail.png",
+          "quentity": 1,
+          "user": "b91f"
+        },
+        {
+          "id": "8f5f",
+          "title": "Dior J'adore",
+          "description": "J'adore by Dior is a luxurious and floral fragrance, known for its blend of ylang-ylang, rose, and jasmine. It embodies femininity and sophistication.",
+          "category": "fragrances",
+          "price": 89.99,
+          "discountPercentage": 17.44,
+          "rating": 3.31,
+          "stock": 91,
+          "tags": [
+            "fragrances",
+            "perfumes"
+          ],
+          "brand": "Dior",
+          "sku": "E70NB03B",
+          "weight": 10,
+          "dimensions": {
+            "width": 21.51,
+            "height": 7,
+            "depth": 26.51
+          },
+          "warrantyInformation": "Lifetime warranty",
+          "shippingInformation": "Ships in 2 weeks",
+          "availabilityStatus": "In Stock",
+          "reviews": [
+            {
+              "rating": 5,
+              "comment": "Fast shipping!",
+              "date": "2024-05-23T08:56:21.619Z",
+              "reviewerName": "Zoe Nicholson",
+              "reviewerEmail": "zoe.nicholson@x.dummyjson.com"
+            },
+            {
+              "rating": 4,
+              "comment": "Excellent quality!",
+              "date": "2024-05-23T08:56:21.619Z",
+              "reviewerName": "Addison Wright",
+              "reviewerEmail": "addison.wright@x.dummyjson.com"
+            },
+            {
+              "rating": 4,
+              "comment": "Would buy again!",
+              "date": "2024-05-23T08:56:21.619Z",
+              "reviewerName": "Clara Berry",
+              "reviewerEmail": "clara.berry@x.dummyjson.com"
+            }
+          ],
+          "returnPolicy": "7 days return policy",
+          "minimumOrderQuantity": 8,
+          "meta": {
+            "createdAt": "2024-05-23T08:56:21.619Z",
+            "updatedAt": "2024-05-23T08:56:21.619Z",
+            "barcode": "0887083199279",
+            "qrCode": "https://dummyjson.com/public/qr-code.png"
+          },
+          "images": [
+            "https://cdn.dummyjson.com/products/images/fragrances/Dior%20J'adore/1.png",
+            "https://cdn.dummyjson.com/products/images/fragrances/Dior%20J'adore/2.png",
+            "https://cdn.dummyjson.com/products/images/fragrances/Dior%20J'adore/3.png"
+          ],
+          "thumbnail": "https://cdn.dummyjson.com/products/images/fragrances/Dior%20J'adore/thumbnail.png",
+          "quentity": 1,
+          "user": "b91f"
+        }
+      ],
+      "totalAmount": 99.97999999999999,
       "totalItems": 2,
       "user": {
         "id": "b91f",
@@ -6601,11 +6767,31 @@
             "state": "Delhi",
             "pincode": "110085",
             "phone": "09315691962"
+          },
+          {
+            "name": "gulshan",
+            "email": "nikita.03.apr.1999@gmail.com",
+            "country": "India",
+            "street": "A-290 vijay vihar phase 1 rohini near sec-5, flat no.6",
+            "city": "Delhi",
+            "state": "Delhi",
+            "pincode": "110085",
+            "phone": "09315691962"
           }
         ]
       },
-      "paymentMethod": "cash",
-      "selectedAddress": null
+      "paymentMethod": "card",
+      "selectedAddress": {
+        "name": "gulshan",
+        "email": "nikita.03.apr.1999@gmail.com",
+        "country": "India",
+        "street": "A-290 vijay vihar phase 1 rohini near sec-5, flat no.6",
+        "city": "Delhi",
+        "state": "Delhi",
+        "pincode": "110085",
+        "phone": "09315691962"
+      },
+      "status": "pending"
     }
   ]
 }

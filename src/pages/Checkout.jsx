@@ -4,32 +4,18 @@ import { deleteItemFromCartAsync, selectItems, updateCartAsync } from "../featur
 import { useForm } from "react-hook-form";
 import { selectLoggedInUser, updateUserAsync } from "../features/auth/authSlice";
 import { useState } from "react";
-import { createOrderAsync } from "../features/order/orderSlice";
+import { createOrderAsync, selectCurrentOrder } from "../features/order/orderSlice";
 
 
-const addresses = [
-  {
-    name: "Jammy Smith",
-    phone: "+91 988934985",
-    city: "Delhi",
-    code: "13131",
-    email: "jammy@123gmail.com",
-  },
-  {
-    name: "Romy Rain",
-    phone: "+1 988934985",
-    city: "Ohio",
-    code: "13131",
-    email: "rain@1236gmail.com",
-  },
-  // More products...
-];
+
+
 function Checkout() {
   const dispatch = useDispatch();
+  const currentOrder = useSelector(selectCurrentOrder);
   const user = useSelector(selectLoggedInUser);
   const items = useSelector(selectItems);
-  const [selectedAddress,setSeletedAddress] = useState(null);
-  const [paymentMethod,setPaymentMethod] = useState('cash');
+  const [selectedAddress, setSeletedAddress] = useState(null);
+  const [paymentMethod, setPaymentMethod] = useState('cash');
   const totalAmount = items.reduce((amount, item) => item.price * item.quentity + amount, 0);
   const totalItems = items.reduce((total, item) => item.quentity + total, 0);
   const {
@@ -46,24 +32,33 @@ function Checkout() {
   function handleRemove(e, id) {
     dispatch(deleteItemFromCartAsync(id));
   }
-  function handleAddress(e){
-       console.log(e.target.value);
-       setSeletedAddress(user.addresses[e.target.value]);
+  function handleAddress(e) {
+    console.log(e.target.value);
+    setSeletedAddress(user.addresses[e.target.value]);
   }
-  function handlePayment(e){
+  function handlePayment(e) {
     console.log(e.target.value);
     setPaymentMethod(e.target.value);
-}
-function handleOrder(e){
-  const order = {items,totalAmount,totalItems,user,paymentMethod,selectedAddress};
-  dispatch(createOrderAsync(order));
-  //TODO : redirect to order-success-page
-  //TODO : clear card after order
-  //TODO : on server change the stock number of items 
-}
+  }
+  console.log({currentOrder});
+  function handleOrder(e) {
+    if (selectedAddress && paymentMethod) {
+      const order = {
+        items, totalAmount, totalItems, user, paymentMethod, selectedAddress,
+        status: 'pending'  // other status can be delivered and received.
+      };
+      dispatch(createOrderAsync(order));
+    } else {
+      alert("Enter the address and method")
+    }
+    //TODO : redirect to order-success-page
+    //TODO : clear card after order
+    //TODO : on server change the stock number of items 
+  }
   return (
     <>
       {!items.length && <Navigate to={"/"} replace={true}></Navigate>}
+      {currentOrder && <Navigate to={`/order-success/${currentOrder.id}`} replace={true}></Navigate>}
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-5  mt-3 ">
           {/* checkout details and address */}
@@ -71,8 +66,7 @@ function handleOrder(e){
             <form action="" className="bg-white"
               autoComplete="true"
               noValidate onSubmit={handleSubmit((data) => {
-                console.log(data);
-                dispatch(updateUserAsync({...user,addresses:[...user.addresses,data]}));
+                dispatch(updateUserAsync({ ...user, addresses: [...user.addresses, data] }));
                 reset();
               })}
             >
@@ -256,7 +250,7 @@ function handleOrder(e){
                     Choose from existing addresses
                   </p>
                   <ul role="list">
-                    {user.addresses.map((person,index) => (
+                    {user.addresses.map((person, index) => (
                       <li
                         key={index}
                         className="flex justify-between gap-x-6 py-5 border-solid border-2 border-gray-200 px-5"
@@ -305,7 +299,7 @@ function handleOrder(e){
                           <input
                             id="cash"
                             name="payments"
-                            checked ={paymentMethod === 'cash'}
+                            checked={paymentMethod === 'cash'}
                             onChange={handlePayment}
                             value="cash"
                             type="radio"
@@ -321,7 +315,7 @@ function handleOrder(e){
                         <div className="flex items-center gap-x-3">
                           <input
                             id="card"
-                            checked = {paymentMethod === 'card'}
+                            checked={paymentMethod === 'card'}
                             onChange={handlePayment}
                             name="payments"
                             value="card"

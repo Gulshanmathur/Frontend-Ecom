@@ -58,3 +58,18 @@ export async function deleteItemFromCart(itemId) {
     console.error('Error creating user:', error);
   }
 }
+
+export async function resetCart(userId) {
+
+  try {
+    const response = await fetchItemsByUserId(userId);  // to fetch all items
+    const items = response.data;
+    for(let item of items){
+      await deleteItemFromCart(item);  //delete item from items one by one
+    }
+
+    return {status:"success"}; 
+  } catch (error) {
+    console.error('Error creating user:', error);
+  }
+}

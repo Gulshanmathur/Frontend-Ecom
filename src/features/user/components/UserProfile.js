@@ -1,9 +1,7 @@
 // import  React,{ useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { selectCount } from "./authSlice";
 
-export default function Login() {
-  const count = useSelector(selectCount);
+export default function UserProfile() {
   const dispatch = useDispatch();
 
   return (

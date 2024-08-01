@@ -80,7 +80,7 @@ export default function ProductDetail() {
     e.preventDefault();
     const newItem = {...product, quentity:1,user:user.id};
     delete newItem['id'];
-    dispatch(addToCartAsync(newItemx))
+    dispatch(addToCartAsync(newItem))
   }
   useEffect(() => {
     dispatch(fetchAllProductByIdAsync(params.id))
