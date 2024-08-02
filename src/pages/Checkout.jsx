@@ -2,9 +2,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { Navigate, NavLink } from "react-router-dom";
 import { deleteItemFromCartAsync, selectItems, updateCartAsync } from "../features/cart/cartSlice";
 import { useForm } from "react-hook-form";
-import { selectLoggedInUser, updateUserAsync } from "../features/auth/authSlice";
+import { updateUserAsync } from "../features/auth/authSlice";
 import { useState } from "react";
 import { createOrderAsync, selectCurrentOrder } from "../features/order/orderSlice";
+import { selectUserInfo } from "../features/user/userSlice";
 
 
 
@@ -12,7 +13,7 @@ import { createOrderAsync, selectCurrentOrder } from "../features/order/orderSli
 function Checkout() {
   const dispatch = useDispatch();
   const currentOrder = useSelector(selectCurrentOrder);
-  const user = useSelector(selectLoggedInUser);
+  const user = useSelector(selectUserInfo);
   const items = useSelector(selectItems);
   const [selectedAddress, setSeletedAddress] = useState(null);
   const [paymentMethod, setPaymentMethod] = useState('cash');
