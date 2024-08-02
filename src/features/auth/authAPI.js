@@ -1,3 +1,4 @@
+/* eslint-disable no-unreachable */
 
 export async function createUser(userData) {
  // Log user data for reference
@@ -39,5 +40,17 @@ export async function checkUser(loginInfo) {
    }
  }
 
+ export async function signOut(userId) {
+  // Log user data for reference
+ 
+   try {
+   
+     //TODO : on server we will remove user session info
+ 
+     return ({data:'success'})// Return the data object 
+   } catch(error ){
+    console.error(error);
+   }
+ }
 
 
