@@ -70,6 +70,9 @@ export default function UserProfile() {
           <h3 className=" text-xl font-bold p-3 sm:my-2 tracking-tight text-green-900">
             email address : {user.email}
           </h3>
+          {user.role==="admin" && <h3 className=" text-xl font-bold p-3 sm:my-2 tracking-tight text-green-900">
+            role : {user.role}
+          </h3>}
           <div className="flow-root">
           </div>
         </div>

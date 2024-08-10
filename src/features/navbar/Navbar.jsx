@@ -4,13 +4,20 @@ import { Bars3Icon, XMarkIcon, ShoppingCartIcon } from '@heroicons/react/24/outl
 import { Link, NavLink } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { selectItems } from '../cart/cartSlice'
+import { current } from '@reduxjs/toolkit'
+import { selectUserInfo } from '../user/userSlice'
+import { selectLoggedInUser } from '../auth/authSlice'
 /* eslint-disable react/prop-types */
-const user = {
-  name: 'Tom Cook',
-  email: 'tom@example.com',
-  imageUrl:
-    'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-}
+// const user = {
+//   name: 'Tom Cook',
+//   email: 'tom@example.com',
+//   imageUrl:
+//     'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+// }
+const navigation = [
+  { name: 'Dashboard', link: '#',user:true },
+  { name: 'Admin', link: '/admin',admin: true },
+]
 const userNavigation = [
   { name: 'My Profile', link: '/profile' },
   { name: 'My Orders', link: '/orders' },
@@ -22,6 +29,7 @@ function classNames(...classes) {
 }
 function Navbar({ children }) {
   const items = useSelector(selectItems);
+  const user = useSelector(selectLoggedInUser);
   return (
     <div className="min-h-full">
       <Disclosure as="nav" className="bg-gray-800">
@@ -31,17 +39,31 @@ function Navbar({ children }) {
               <div className="flex h-16 items-center justify-between">
                 <div className="flex items-center">
                   <div className="flex-shrink-0">
-                    <NavLink to="/">
+                    <Link to="/">
                       <img
                         className="h-8 w-8"
                         src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
                         alt="Your Company"
                       />
-                    </NavLink>
+                    </Link>
                   </div>
                 </div>
                 <div className="hidden md:block">
                   <div className="ml-4 flex items-center md:ml-6">
+                    {navigation.map((item)=>(
+                      item[user.role] ?(
+                      <Link key={item.name}
+                         to ={item.link}
+                         className={classNames(
+                          item.current ? 'bg-gray-900 text-white'
+                          :'text-gray-300 hover:bg-gray-700 hover:text-white',
+                          'rounded-md px-3 py-2 text-sm font-medium'
+                         )}
+                         aria-current ={item.current ? 'page': undefined}
+                      >
+                        {item.name}
+                      </Link>):null
+                    ))}
                     <NavLink to="/cart">
                       <button
                         type="button"
