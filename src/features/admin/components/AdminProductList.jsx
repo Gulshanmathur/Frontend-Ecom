@@ -3,7 +3,7 @@ import {fetchBrandsAsync, fetchCategoriesAsync, fetchProductsByFiltersAsync, sel
 import { Fragment, useEffect, useState } from "react";
 import { Dialog, Disclosure, Menu, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
-import { ChevronLeftIcon, ChevronRightIcon, StarIcon } from '@heroicons/react/20/solid'
+import { StarIcon } from '@heroicons/react/20/solid'
 import { Link } from "react-router-dom";
 import {
   ChevronDownIcon,
@@ -13,7 +13,8 @@ import {
   Squares2X2Icon,
 } from "@heroicons/react/20/solid";
 import { useDispatch, useSelector } from "react-redux";
-import { ITEMS_PER_PAGE } from "../../../app/constants";
+import { discountedPrice, ITEMS_PER_PAGE } from "../../../app/constants";
+import Pagination from "../../common/Pagination";
 
 const sortOptions = [
   { name: "Best Rating", sort: "rating", order: "desc", current: false },
@@ -377,69 +378,9 @@ function DesktopFilter({filters, handleFilter }) {
 
     </>);
 }
-function Pagination({ page, setPage, handlePage, totalItems }) {
-  const totalPages = Math.ceil(totalItems / ITEMS_PER_PAGE);
-  return (
-    <div className="flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6">
-      <div className="flex flex-1 justify-between sm:hidden">
-        <a
-          href="#"
-          className="relative inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
-        >
-          Previous
-        </a>
-        <a
-          href="#"
-          className="relative ml-3 inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
-        >
-          Next
-        </a>
-      </div>
-      <div className="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
-        <div>
-          <p className="text-sm text-gray-700">
-            Showing <span className="font-medium">{(page - 1) * ITEMS_PER_PAGE + 1}</span> to <span className="font-medium">{page * ITEMS_PER_PAGE}</span> of{' '}
-            <span className="font-medium">{totalItems}</span> results
-          </p>
-        </div>
-        <div>
-          <nav className="isolate inline-flex -space-x-px rounded-md shadow-sm" aria-label="Pagination">
-            <div
-              onClick={()=> handlePage(page > 1 ? page- 1 : page)}
-              className="relative inline-flex cursor-pointer items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
-            >
-              <span className="sr-only">Previous</span>
-              <ChevronLeftIcon className="h-5 w-5" aria-hidden="true" />
-            </div>
-            {/* Current: "z-10 bg-indigo-600 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600", Default: "text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:outline-offset-0" */}
 
-            {Array.from({ length: totalPages }).map(
-              (el, index) => (
-                <div
-                  key={index}
-                  onClick={() => handlePage(index + 1)}
-                  aria-current="page"
-                  className={`relative z-10 inline-flex items-center ${index + 1 ===page ?'bg-indigo-600 text-white' : 'text-gray-400' } cursor-pointer  px-4 py-2 text-sm 
-                       font-semibold focus:z-20 focus-visible:outline focus-visible:outline-2 
-                       focus-visible:outline-offset-2 focus-visible:outline-indigo-600`}
-                >
-                  {index + 1}
-                </div>
-              )
-            )}
-            <div
-              onClick={()=> handlePage(page < totalPages ? page+ 1 : page)}
-              className="relative inline-flex items-center rounded-r-md cursor-pointer px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
-            >
-              <span className="sr-only">Next</span>
-              <ChevronRightIcon className="h-5 w-5" aria-hidden="true" />
-            </div>
-          </nav>
-        </div>
-      </div>
-    </div>
-  );
-}
+// pagination was here now moved to common repo
+
 function ProductGrid({ products }) {
   return (
     <>
@@ -476,7 +417,7 @@ function ProductGrid({ products }) {
                     <div>
                       <p className="text-sm font-medium text-gray-900">
                         
-                        ${Math.round(product.price * (1 - product.discountPercentage / 100))}
+                        ${discountedPrice(product)}
                       </p>
                       <p className="text-sm font-medium line-through  text-gray-400">
                         ${product.price}

@@ -4,8 +4,9 @@ import { RadioGroup } from '@headlessui/react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchProductByIdAsync, selectProductById } from '../productListSlice'
 import { useParams } from 'react-router-dom'
-import { addToCartAsync } from '../../cart/cartSlice'
+import { addToCartAsync, selectItems } from '../../cart/cartSlice'
 import { selectLoggedInUser } from '../../auth/authSlice'
+import { discountedPrice } from '../../../app/constants'
 // const product = {
 //     name: 'Basic Tee 6-Pack',
 //     price: '$192',
@@ -73,14 +74,21 @@ export default function ProductDetail() {
   const dispatch = useDispatch();
   const params = useParams();
   const user = useSelector(selectLoggedInUser);
+  const items = useSelector(selectItems);
   const [selectedColor, setSelectedColor] = useState(colors[0])
   const [selectedSize, setSelectedSize] = useState(sizes[2])
   const product = useSelector(selectProductById);
   const handleCart = (e)=>{
     e.preventDefault();
-    const newItem = {...product, quentity:1,user:user.id};
-    delete newItem['id'];
-    dispatch(addToCartAsync(newItem))
+    if(items.findIndex(item =>item.productId === product.id) <0){
+      const newItem = {...product,productId: product.id, quentity:1,user:user.id};
+      delete newItem['id'];
+      dispatch(addToCartAsync(newItem))
+    }else{
+      console.log("already added");
+      
+    }
+    
   }
   useEffect(() => {
     dispatch(fetchProductByIdAsync(params.id))
@@ -163,7 +171,8 @@ export default function ProductDetail() {
           {/* Options */}
           <div className="mt-4 lg:row-span-3 lg:mt-0">
             <h2 className="sr-only">Product information</h2>
-            <p className="text-3xl tracking-tight text-gray-900"> ${product.price}</p>
+            <p className="text-xl line-through tracking-tight text-gray-900"> ${product.price}</p>
+            <p className="text-3xl tracking-tight text-gray-900"> ${discountedPrice(product)}</p>
 
             {/* Reviews */}
             <div className="mt-6">

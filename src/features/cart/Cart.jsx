@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Navigate, NavLink } from "react-router-dom";
 import { deleteItemFromCartAsync, selectItems, updateCartAsync } from "./cartSlice";
 import { useId } from "react";
+import { discountedPrice } from "../../app/constants";
 
 // import { XMarkIcon } from "@heroicons/react/24/outline";
 // const products = [
@@ -37,7 +38,7 @@ import { useId } from "react";
 export default function Cart() {
   const dispatch = useDispatch();
   const items = useSelector(selectItems);
-  const totalAmount = items.reduce((amount, item)=> item.price * item.quentity + amount,0);
+  const totalAmount = items.reduce((amount, item)=> discountedPrice(item) * item.quentity + amount,0);
   const totalItems = items.reduce((total,item)=> item.quentity + total, 0 );
   const handleQuantity = (e,item)=>{
     dispatch (updateCartAsync({...item,quentity: +e.target.value}))
@@ -71,7 +72,7 @@ export default function Cart() {
                       <h3>
                         <a href={item.href}>{item.title}</a>
                       </h3>
-                      <p className="ml-4">{item.price}</p>
+                      <p className="ml-4">{discountedPrice(item)}</p>
                     </div>
                     <p className="mt-1 text-sm text-gray-500">
                       {item.brand}
