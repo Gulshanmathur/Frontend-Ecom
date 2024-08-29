@@ -6,33 +6,6 @@ import { Grid } from "react-loader-spinner";
 // import Modal from "../common/Modal";
 
 // import { XMarkIcon } from "@heroicons/react/24/outline";
-// const products = [
-//   {
-//     id: 1,
-//     name: "Throwback Hip Bag",
-//     href: "#",
-//     color: "Salmon",
-//     price: "$90.00",
-//     quantity: 1,
-//     imageSrc:
-//       "https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-01.jpg",
-//     imageAlt:
-//       "Salmon orange fabric pouch with match zipper, gray zipper pull, and adjustable hip belt.",
-//   },
-//   {
-//     id: 2,
-//     name: "Medium Stuff Satchel",
-//     href: "#",
-//     color: "Blue",
-//     price: "$32.00",
-//     quantity: 1,
-//     imageSrc:
-//       "https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-02.jpg",
-//     imageAlt:
-//       "Front of satchel with blue canvas body, black straps and handle, drawstring top, and front zipper pouch.",
-//   },
-//   // More products...
-// ];
 export default function Cart() {
   const dispatch = useDispatch();
   const items = useSelector(selectItems);
@@ -41,9 +14,10 @@ export default function Cart() {
   const status = useSelector(selectCartStatus)
   // const [openModal,setOpenModal] = useState(null);
   const handleQuantity = (e, item) => {
-    dispatch(updateCartAsync({ id:item.id, quentity: +e.target.value }))
+    dispatch(updateCartAsync({ id:item.id, quantity: +e.target.value }))
   }
   function handleRemove(e, id) {
+    e.preventDefault();
     dispatch(deleteItemFromCartAsync(id));
   }
   return (

@@ -19,6 +19,8 @@ export default function UserProfile() {
   const [selectedEditIndex, setSelectedEditIndex] = useState(-1);
   const [paymentMethod, setPaymentMethod] = useState('cash');
   const [showAddAddressForm,setShowAddAddressForm] = useState(false);
+  console.log({user});
+  
   function handleEdit(updatedAddress, index) {
     const newUser = { ...user, addresses: [...user.addresses] } // to avoid shallow copy
     console.log({ newUser });

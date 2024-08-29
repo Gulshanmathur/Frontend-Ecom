@@ -31,7 +31,7 @@ import { positions, Provider, transitions  } from 'react-alert';
 
 const options = {
   position: positions.BOTTOM_LEFT,
-  timeout: 5000,
+  timeout: 2000,
   transition: transitions.SCALE,
 
 };
@@ -116,6 +116,8 @@ const router = createBrowserRouter([
 ]);
 function App() {
   const user = useSelector(selectLoggedInUser);
+  console.log({user});
+  
   const dispatch = useDispatch();
 
   useEffect(() => {

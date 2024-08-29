@@ -1,16 +1,18 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { checkUser, createUser, signOut } from './authAPI';
 import { updateUser } from '../user/userAPI';
+// console.log("inside authSlice.js");
 
 const initialState = {
-  loggedInUser: null,
+  loggedInUser: null, // this should only contain user identity 'id'/'role' 
   status: 'idle',
   error :null
 };
 export const createUserAsync = createAsyncThunk(
   'user/createUser',
   async (userData) => {
-     
+    console.log({userData});
+    
     const response = await createUser(userData);
     return response.data;
   }
@@ -20,6 +22,7 @@ export const checkUserAsync = createAsyncThunk(
   async (loginInfo) => {
      try {
       const response = await checkUser(loginInfo);
+      console.log({response});  
       return response.data;
      } catch (error) {
       console.log(error);

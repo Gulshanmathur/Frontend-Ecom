@@ -16,7 +16,7 @@ export async function addToCart(item) {
  }
 
  export function fetchItemsByUserId(userId) {
-  console.log({userId});
+  // console.log({userId});
   
   return new Promise((resolve) => {
     // TODO: we will not hard-code server URL
