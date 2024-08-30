@@ -11,6 +11,7 @@ function AdminOrders() {
     const orders = useSelector(selectOrders);
     const totalOders = useSelector(selectTotalOrders);
     const [editableOrderId, setEditableOrderId] = useState(-1);
+
     function handleShow(order) {
         console.log("handleShow");
     }
@@ -22,7 +23,11 @@ function AdminOrders() {
         console.log("handleDelete");
     }
     function handleUpdate(e, order) {
+        console.log("inside handleUpdate");
+            
         const updatedOrder = { ...order, status: e.target.value }
+        console.log({updatedOrder});
+        
         dispatch(updateOrderAsync(updatedOrder))
         setEditableOrderId(-1);
     }
@@ -61,7 +66,7 @@ function AdminOrders() {
     }
     useEffect(() => {
         //_per_page
-        const pagination = { _page: page, _per_page: ITEMS_PER_PAGE };
+        const pagination = { _page: page, _per_page: 5 };  //before use- ITEMS_PER_PAGE
         dispatch(fetchAllOrdersAsync({ sort, pagination }))
         //TODO: Server will filter the delted products
     }, [dispatch, page, sort])
@@ -125,7 +130,7 @@ function AdminOrders() {
                         </tr>
                     </thead>
                     <tbody className="bg-white divide-y divide-gray-200">
-                        {orders.data?.map((order) => (
+                        {orders?.map((order) => (
                             <tr key={order.id}>
                                 <td className="px-6 py-4 whitespace-nowrap">
                                     <div className="flex items-center">
@@ -144,13 +149,13 @@ function AdminOrders() {
                                                     <div key={index} className="text-sm text-gray-900">
                                                         <img
                                                             className="w-6 h-6 rounded-full"
-                                                            src={item.thumbnail}
+                                                            src={item.product.thumbnail}
                                                         />
                                                     </div>
 
                                                 </div>
                                                 <span className="text-sm text-gray-500">
-                                                    {item.title.length > 17 ? item.title.substring(0, 19) : item.title} - #{item.quentity} - $ {discountedPrice(item)}
+                                                    {item.product.title.length > 17 ? item.product.title.substring(0, 19) : item.product.title} - #{item.quantity} - $ {discountedPrice(item.product)}
                                                 </span>
 
                                             </div>
@@ -176,14 +181,21 @@ function AdminOrders() {
                                     $ {Math.round(order.totalAmount * 100) / 100}
                                 </td>
                                 <td className="px-5 py-4 whitespace-nowrap text-sm text-gray-500">
-                                    <div>
-                                        <strong>{order.selectedAddress.name}</strong>
-                                    </div>
-                                    <div>{order.selectedAddress.street},</div>
-                                    <div>{order.selectedAddress.city},</div>
-                                    <div>{order.selectedAddress.state},</div>
-                                    <div>{order.selectedAddress.pincode},</div>
-                                    <div>{order.selectedAddress.phone}</div>
+                                    {
+                                        order.selectedAddress.map((address,index) => (
+                                            <div key={index}>
+                                                <div>
+                                                    <strong>{address.name}</strong>
+                                                </div>
+                                                <div>{address.street},</div>
+                                                <div>{address.city},</div>
+                                                <div>{address.state},</div>
+                                                <div>{address.pincode},</div>
+                                                <div>{address.phone}</div>
+                                            </div>
+                                        ))
+                                    }
+
                                 </td>
                                 <td className="px-6 py-4 whitespace-nowrap  text-sm  font-medium">
                                     <div className="flex items-center space-x-2 ">
@@ -206,7 +218,7 @@ function AdminOrders() {
                     </tbody>
                 </table>
             </div>
-            <Pagination page={page} setPage={setPage} handlePage={handlePage} totalItems={totalOders} />
+            <Pagination page={page} setPage={setPage} handlePage={handlePage} totalItems={orders.length} />
         </div>
     )
 }

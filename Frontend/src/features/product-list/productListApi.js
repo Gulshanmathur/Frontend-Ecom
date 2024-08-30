@@ -1,17 +1,4 @@
 // A mock function to mimic making an async request for data
-export function fetchAllProducts() {
-  return new Promise((resolve) => {
-    // TODO: we will not hard-code server URL
-    
-    fetch(`http://localhost:8000/products`)
-      .then((response) => response.json())
-      .then((data) => {
-        resolve({ data });
-      })
-      .catch((error) => console.error(error));
-  });
-}
-
 export function fetchProductById(id) {
   return new Promise((resolve) => {
     // TODO: we will not hard-code server URL
@@ -63,7 +50,7 @@ export function createProduct(product) {
   });
 }
 
-export async function fetchProductsByFilter(filter,sort,pagination) {
+export async function fetchProductsByFilter(filter,sort,pagination,admin) {
   // filter ={"category":["smartPhone","laptops","beauty",...]}
   // sort = {_sort :"price",_order:"desc"}
   // pagination = {_page:1, _limit: 10} //_page=1&_limit=10
@@ -86,6 +73,8 @@ export async function fetchProductsByFilter(filter,sort,pagination) {
   for(let key in pagination){
     queryString += `${key}=${pagination[key]}&`;
   }
+
+  if(admin) queryString+= `admin=true`;
   const url = `http://localhost:8000/products?${queryString}`;
   try {
     const response = await fetch(url);

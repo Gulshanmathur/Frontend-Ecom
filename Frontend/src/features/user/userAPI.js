@@ -1,6 +1,7 @@
 export async function fetchLoggedInUserOrders(userId) { 
    try {
-     const response = await fetch(`http://localhost:8000/orders/?user=${userId}`);
+                                    //  ?user=${userId}` before update below line
+     const response = await fetch(`http://localhost:8000/orders/user/${userId}`);
      const data = await response.json(); 
      return { data }; // Return the data object
    } catch (error) {

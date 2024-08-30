@@ -19,7 +19,6 @@ export default function UserProfile() {
   const [selectedEditIndex, setSelectedEditIndex] = useState(-1);
   const [paymentMethod, setPaymentMethod] = useState('cash');
   const [showAddAddressForm,setShowAddAddressForm] = useState(false);
-  console.log({user: userInfo});
   
   function handleEdit(updatedAddress, index) {
     const newUser = { ...userInfo, addresses: [...userInfo.addresses] } // to avoid shallow copy
@@ -27,7 +26,6 @@ export default function UserProfile() {
     newUser.addresses.splice(index, 1, updatedAddress);
     dispatch(updateUserAsync(newUser))
     setSelectedEditIndex(-1);
-    console.log({ user: userInfo });
   }
 
   function handleEditForm(index) {

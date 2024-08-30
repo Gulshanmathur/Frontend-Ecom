@@ -10,9 +10,7 @@ const initialState = {
 };
 export const createUserAsync = createAsyncThunk(
   'user/createUser',
-  async (userData) => {
-    console.log({userData});
-    
+  async (userData) => {    
     const response = await createUser(userData);
     return response.data;
   }
@@ -21,8 +19,7 @@ export const checkUserAsync = createAsyncThunk(
   'user/checkUser', 
   async (loginInfo) => {
      try {
-      const response = await checkUser(loginInfo);
-      console.log({response});  
+      const response = await checkUser(loginInfo);  
       return response.data;
      } catch (error) {
       console.log(error);

@@ -4,6 +4,7 @@ import { clearSelectedProduct, createProductAsync, fetchProductByIdAsync, select
 import { useForm } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
+import { useAlert } from 'react-alert';
 
 export default function ProductForm() {
     const dispatch = useDispatch();
@@ -18,6 +19,7 @@ export default function ProductForm() {
     const categories = useSelector(selectCategories)
     const params = useParams();
     const selectedProduct = useSelector(selectProductById);  //async operation
+    const alert = useAlert()
     useEffect(()=>{   // if the product has already loaded
         if(params.id) {
             dispatch(fetchProductByIdAsync(params.id));
@@ -76,11 +78,14 @@ export default function ProductForm() {
                     product.id = params.id;
                     product.rating = selectedProduct.rating || 0
                     dispatch(updateProductAsync(product));
+                    alert.success('Product updated successfully')
                     reset();
                 }else{
                     dispatch(createProductAsync(product))
+                    alert.success('Product created')
+                    //TODO: these alerts should check if api failed
                     reset();
-                    //TODO: on product successfully added clear fields and show a message
+
                 }
             })}>
             <div className="space-y-12 p-5 bg-white">

@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 
 function ProtectedAdmin({children}) {
     const user = useSelector(selectLoggedInUser);
+    
     if(!user){
         return <Navigate to="/login" replace={"true"} ></Navigate>
     }
