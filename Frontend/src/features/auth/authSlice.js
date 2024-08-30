@@ -31,14 +31,14 @@ export const checkUserAsync = createAsyncThunk(
     
   }
 );
-export const updateUserAsync = createAsyncThunk(
-  'update/updateUser',
-  async (update) => {
+// export const updateUserAsync = createAsyncThunk(
+//   'update/updateUser',
+//   async (update) => {
      
-    const response = await updateUser(update);
-    return response.data;
-  }
-);
+//     const response = await updateUser(update);
+//     return response.data;
+//   }
+// );
 
 export const signOutAsync = createAsyncThunk(
   'signout/signOutUser',
@@ -73,13 +73,13 @@ export const userSlice = createSlice({
         state.status = 'idle';
         state.error = action.error;
       })
-      .addCase(updateUserAsync.pending, (state) => {
-        state.status = 'loading';
-      })
-      .addCase(updateUserAsync.fulfilled, (state, action) => {
-        state.status = 'idle';
-        state.loggedInUser = action.payload;
-      })
+      // .addCase(updateUserAsync.pending, (state) => {
+      //   state.status = 'loading';
+      // })
+      // .addCase(updateUserAsync.fulfilled, (state, action) => {
+      //   state.status = 'idle';
+      //   state.loggedInUser = action.payload;
+      // })
       .addCase(signOutAsync.pending, (state) => {
         state.status = 'loading';
       })

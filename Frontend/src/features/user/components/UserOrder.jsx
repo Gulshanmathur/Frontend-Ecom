@@ -7,10 +7,10 @@ import { discountedPrice } from "../../../app/constants";
 
 export default function UserOrder() {
   const dispatch = useDispatch();
-  const user = useSelector(selectUserInfo);
+  const userInfo = useSelector(selectUserInfo);
   const orders = useSelector(selectUserOrders);
   useEffect(() => {
-    dispatch(fetchLoggedInUserOrderAsync(user.id))
+    dispatch(fetchLoggedInUserOrderAsync(userInfo.id))
   }, [])
 
   return (
@@ -77,7 +77,7 @@ export default function UserOrder() {
               <p className="mt-0.5 text-sm text-gray-500">
                 Your Address:
               </p>
-              {user.addresses.map((address, index) => (
+              {userInfo.addresses.map((address, index) => (
                 <div key={index}
                   className="flex justify-between gap-x-6 py-5 border-solid border-2 border-gray-200 px-5"
                 >

@@ -15,24 +15,24 @@ export default function UserProfile() {
     setValue,   // to set the initial value, it is easy way to avoid controlled form long method
     formState: { errors },
   } = useForm();
-  const user = useSelector(selectUserInfo);
+  const userInfo = useSelector(selectUserInfo);
   const [selectedEditIndex, setSelectedEditIndex] = useState(-1);
   const [paymentMethod, setPaymentMethod] = useState('cash');
   const [showAddAddressForm,setShowAddAddressForm] = useState(false);
-  console.log({user});
+  console.log({user: userInfo});
   
   function handleEdit(updatedAddress, index) {
-    const newUser = { ...user, addresses: [...user.addresses] } // to avoid shallow copy
+    const newUser = { ...userInfo, addresses: [...userInfo.addresses] } // to avoid shallow copy
     console.log({ newUser });
     newUser.addresses.splice(index, 1, updatedAddress);
     dispatch(updateUserAsync(newUser))
     setSelectedEditIndex(-1);
-    console.log({ user });
+    console.log({ user: userInfo });
   }
 
   function handleEditForm(index) {
     setSelectedEditIndex(index);
-    const address = user.addresses[index];
+    const address = userInfo.addresses[index];
     setValue("name", address.name);
     setValue("email", address.email);
     setValue("city", address.city);
@@ -44,22 +44,22 @@ export default function UserProfile() {
   }
   
   function handleAdd(address){
-    const newUser = { ...user, addresses: [...user.addresses,address] } // to avoid shallow copy
+    const newUser = { ...userInfo, addresses: [...userInfo.addresses,address] } // to avoid shallow copy
     dispatch(updateUserAsync(newUser));
     setShowAddAddressForm(false);
 
   }
 
   function handleRemove(e, index) {
-    const newUser = { ...user, addresses: [...user.addresses] } // to avoid shallow copy
+    const newUser = { ...userInfo, addresses: [...userInfo.addresses] } // to avoid shallow copy
     console.log({ newUser });
     newUser.addresses.splice(index, 1);
     dispatch(updateUserAsync(newUser))
-    console.log({ user });
+    console.log({ user: userInfo });
   }
   useEffect(() => {
-    dispatch(fetchedLoggedInUserAsync(user.id));
-  }, [dispatch, user])
+    dispatch(fetchedLoggedInUserAsync(userInfo.id));
+  }, [dispatch, userInfo])
 
 
   return (
@@ -67,13 +67,13 @@ export default function UserProfile() {
       <div className="mx-auto bg-white max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mt-8">
           <h1 className=" text-3xl font-bold p-3 sm:my-2 tracking-tight text-gray-900">
-            Name : {user.name === null ? user.name : "Anonymous"}
+            Name : {userInfo.name === null ? userInfo.name : "Anonymous"}
           </h1>
           <h3 className=" text-xl font-bold p-3 sm:my-2 tracking-tight text-green-900">
-            email address : {user.email}
+            email address : {userInfo.email}
           </h3>
-          {user.role==="admin" && <h3 className=" text-xl font-bold p-3 sm:my-2 tracking-tight text-green-900">
-            role : {user.role}
+          {userInfo.role==="admin" && <h3 className=" text-xl font-bold p-3 sm:my-2 tracking-tight text-green-900">
+            role : {userInfo.role}
           </h3>}
           <div className="flow-root">
           </div>
@@ -275,7 +275,7 @@ export default function UserProfile() {
                       Choose from existing addresses
                     </p>
                     <ul role="list">
-                      {user.addresses.map((person, index) => (
+                      {userInfo.addresses.map((person, index) => (
                         <li
                           key={index}
                           className="flex justify-between gap-x-6 py-5 border-solid border-2 border-gray-200 px-5"
@@ -363,7 +363,7 @@ export default function UserProfile() {
           <p className="mt-0.5 text-sm text-gray-500">
             Your Address:
           </p>
-          {user.addresses.map((address, index) => (
+          {userInfo.addresses.map((address, index) => (
 
             <div key={index}>
               {selectedEditIndex === index && <form action="" className="bg-white"
@@ -561,7 +561,7 @@ export default function UserProfile() {
                       Choose from existing addresses
                     </p>
                     <ul role="list">
-                      {user.addresses.map((person, index) => (
+                      {userInfo.addresses.map((person, index) => (
                         <li
                           key={index}
                           className="flex justify-between gap-x-6 py-5 border-solid border-2 border-gray-200 px-5"
