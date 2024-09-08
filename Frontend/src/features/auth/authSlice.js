@@ -89,7 +89,7 @@ export const userSlice = createSlice({
 
 
 
-export const selectLoggedInUser  = (state) => {
+export const selectloggedInUser  = (state) => {
   const comingData = state.auth.loggedInUser;
   return comingData;
 }

@@ -1,0 +1,371 @@
+{
+  "products": 
+    [
+      {
+        "title": "Elegant Dress",
+        "description": "A beautiful and flowing dress for any occasion.",
+        "price": 79.99,
+        "discountPercentage": 20,
+        "rating": 4.5,
+        "stock": 25,
+        "brand": "Zara",
+        "category": "Women's Clothing",
+        "thumbnail": "https://example.com/images/dress1.jpg",
+        "images": [
+          "https://example.com/images/dress1_1.jpg",
+          "https://example.com/images/dress1_2.jpg",
+          "https://example.com/images/dress1_3.jpg"
+        ]
+      },
+      {
+        "title": "Laptop Pro",
+        "description": "Powerful laptop for work and gaming.",
+        "price": 1299.99,
+        "discountPercentage": 10,
+        "rating": 4.8,
+        "stock": 15,
+        "brand": "Apple",
+        "category": "Electronics",
+        "thumbnail": "https://example.com/images/laptop.jpg",
+        "images": [
+          "https://example.com/images/laptop_1.jpg",
+          "https://example.com/images/laptop_2.jpg",
+          "https://example.com/images/laptop_3.jpg"
+        ]
+      },
+
+      {
+        "title": "Smartwatch X",
+        "description": "Stylish and feature-packed smartwatch.",
+        "price": 249.99,
+        "discountPercentage": 5,
+        "rating": 4.2,
+        "stock": 30,
+        "brand": "Samsung",
+        "category": "Electronics",
+        "thumbnail": "https://example.com/images/smartwatch.jpg",
+        "images": [
+          "https://example.com/images/smartwatch_1.jpg",
+          "https://example.com/images/smartwatch_2.jpg",
+          "https://example.com/images/smartwatch_3.jpg"
+        ]
+      },
+      {
+        "title": "Wireless Headphones",
+        "description": "High-quality wireless headphones with noise cancellation.",
+        "price": 199.99,
+        "discountPercentage": 15,
+        "rating": 4.7,
+        "stock": 20,
+        "brand": "Sony",
+        "category": "Electronics",
+        "thumbnail": "https://example.com/images/headphones.jpg",
+        "images": [
+          "https://example.com/images/headphones_1.jpg",
+          "https://example.com/images/headphones_2.jpg",
+          "https://example.com/images/headphones_3.jpg"
+        ]
+      },
+      {
+        "title": "Running Shoes",
+        "description": "Comfortable running shoes for all levels.",
+        "price": 89.99,
+        "discountPercentage": 10,
+        "rating": 4.3,
+        "stock": 40,
+        "brand": "Nike",
+        "category": "Sportswear",
+        "thumbnail": "https://example.com/images/runningshoes.jpg",
+        "images": [
+          "https://example.com/images/runningshoes_1.jpg",
+          "https://example.com/images/runningshoes_2.jpg",
+          "https://example.com/images/runningshoes_3.jpg"
+        ]
+      },
+      {
+        "title": "Kitchen Blender",
+        "description": "Powerful blender for smoothies and more.",
+        "price": 129.99,
+        "discountPercentage": 8,
+        "rating": 4.6,
+        "stock": 25,
+        "brand": "KitchenAid",
+        "category": "Kitchen Appliances",
+        "thumbnail": "https://example.com/images/blender.jpg",
+        "images": [
+          "https://example.com/images/blender_1.jpg",
+          "https://example.com/images/blender_2.jpg",
+          "https://example.com/images/blender_3.jpg"
+        ]
+      },
+      {
+        "title": "Gaming Console",
+        "description": "High-performance gaming console.",
+        "price": 499.99,
+        "discountPercentage": 12,
+        "rating": 4.9,
+        "stock": 10,
+        "brand": "PlayStation",
+        "category": "Electronics",
+        "thumbnail": "https://example.com/images/gamingconsole.jpg",
+        "images": [
+          "https://example.com/images/gamingconsole_1.jpg",
+          "https://example.com/images/gamingconsole_2.jpg",
+          "https://example.com/images/gamingconsole_3.jpg"
+        ]
+      },
+      {
+        "title": "Coffee Maker",
+        "description": "Brew your favorite coffee at home.",
+        "price": 99.99,
+        "discountPercentage": 15,
+        "rating": 4.4,
+        "stock": 35,
+        "brand": "Keurig",
+        "category": "Kitchen Appliances",
+        "thumbnail": "https://example.com/images/coffeemaker.jpg",
+        "images": [
+          "https://example.com/images/coffeemaker_1.jpg",
+          "https://example.com/images/coffeemaker_2.jpg",
+          "https://example.com/images/coffeemaker_3.jpg"
+        ]
+      },
+      {
+        "title": "Smart TV",
+        "description": "Enjoy stunning visuals and smart features.",
+        "price": 799.99,
+        "discountPercentage": 20,
+        "rating": 4.8,
+        "stock": 18,
+        "brand": "LG",
+        "category": "Electronics",
+        "thumbnail": "https://example.com/images/smarttv.jpg",
+        "images": [
+          "https://example.com/images/smarttv_1.jpg",
+          "https://example.com/images/smarttv_2.jpg",
+          "https://example.com/images/smarttv_3.jpg"
+        ]
+      },
+      {
+        "title": "Backpack",
+        "description": "Durable and stylish backpack for everyday use.",
+        "price": 49.99,
+        "discountPercentage": 10,
+        "rating": 4.5,
+        "stock": 50,
+        "brand": "Adidas",
+        "category": "Accessories",
+        "thumbnail": "https://example.com/images/backpack.jpg",
+        "images": [
+          "https://example.com/images/backpack_1.jpg",
+          "https://example.com/images/backpack_2.jpg",
+          "https://example.com/images/backpack_3.jpg"
+        ]
+      },
+      {
+        "title": "Stylish Sneakers",
+        "description": "Comfortable and trendy sneakers for everyday wear.",
+        "price": 59.99,
+        "discountPercentage": 15,
+        "rating": 4.5,
+        "stock": 25,
+        "brand": "Nike",
+        "category": "Men's Footwear",
+        "thumbnail": "https://example.com/images/sneakers1.jpg",
+        "images": [
+          "https://example.com/images/sneakers1-1.jpg",
+          "https://example.com/images/sneakers1-2.jpg",
+          "https://example.com/images/sneakers1-3.jpg"
+        ]
+      },
+      {
+        "title": "Modern Laptop",
+        "description": "A powerful laptop for work and play.",
+        "price": 999.99,
+        "discountPercentage": 10,
+        "rating": 4.7,
+        "stock": 8,
+        "brand": "Apple",
+        "category": "Electronics",
+        "thumbnail": "https://example.com/images/laptop1.jpg",
+        "images": [
+          "https://example.com/images/laptop1-1.jpg",
+          "https://example.com/images/laptop1-2.jpg",
+          "https://example.com/images/laptop1-3.jpg"
+        ]
+      },
+      {
+        "title": "Luxury Watch",
+        "description": "A sophisticated timepiece for any occasion.",
+        "price": 299.99,
+        "discountPercentage": 5,
+        "rating": 4.9,
+        "stock": 12,
+        "brand": "Rolex",
+        "category": "Watches",
+        "thumbnail": "https://example.com/images/watch1.jpg",
+        "images": [
+          "https://example.com/images/watch1-1.jpg",
+          "https://example.com/images/watch1-2.jpg",
+          "https://example.com/images/watch1-3.jpg"
+        ]
+      },
+      {
+        "title": "Stylish Sunglasses",
+        "description": "Protect your eyes in style with these sunglasses.",
+        "price": 49.99,
+        "discountPercentage": 30,
+        "rating": 4.6,
+        "stock": 20,
+        "brand": "Ray-Ban",
+        "category": "Accessories",
+        "thumbnail": "https://example.com/images/sunglasses1.jpg",
+        "images": [
+          "https://example.com/images/sunglasses1-1.jpg",
+          "https://example.com/images/sunglasses1-2.jpg",
+          "https://example.com/images/sunglasses1-3.jpg"
+        ]
+      },
+      {
+        "title": "Comfortable Backpack",
+        "description": "A durable backpack for everyday use.",
+        "price": 39.99,
+        "discountPercentage": 25,
+        "rating": 4.4,
+        "stock": 18,
+        "brand": "Adidas",
+        "category": "Bags",
+        "thumbnail": "https://example.com/images/backpack1.jpg",
+        "images": [
+          "https://example.com/images/backpack1-1.jpg",
+          "https://example.com/images/backpack1-2.jpg",
+          "https://example.com/images/backpack1-3.jpg"
+        ]
+      },
+      {
+        "title": "Wireless Earbuds",
+        "description": "Enjoy clear sound with these wireless earbuds.",
+        "price": 99.99,
+        "discountPercentage": 10,
+        "rating": 4.8,
+        "stock": 15,
+        "brand": "Apple",
+        "category": "Electronics",
+        "thumbnail": "https://example.com/images/earbuds1.jpg",
+        "images": [
+          "https://example.com/images/earbuds1-1.jpg",
+          "https://example.com/images/earbuds1-2.jpg",
+          "https://example.com/images/earbuds1-3.jpg"
+        ]
+      },
+      {
+        "title": "Stylish Watch",
+        "description": "A fashionable watch for any occasion.",
+        "price": 69.99,
+        "discountPercentage": 20,
+        "rating": 4.7,
+        "stock": 22,
+        "brand": "Michael Kors",
+        "category": "Watches",
+        "thumbnail": "https://example.com/images/watch2.jpg",
+        "images": [
+          "https://example.com/images/watch2-1.jpg",
+          "https://example.com/images/watch2-2.jpg",
+          "https://example.com/images/watch2-3.jpg"
+        ]
+      },
+      {
+        "title": "Comfortable Jeans",
+        "description": "Classic jeans for a timeless look.",
+        "price": 49.99,
+        "discountPercentage": 15,
+        "rating": 4.5,
+        "stock": 30,
+        "brand": "Levi's",
+        "category": "Men's Clothing",
+        "thumbnail": "https://example.com/images/jeans1.jpg",
+        "images": [
+          "https://example.com/images/jeans1-1.jpg",
+          "https://example.com/images/jeans1-2.jpg",
+          "https://example.com/images/jeans1-3.jpg"
+        ]
+      },
+      {
+        "title": "Elegant Handbag",
+        "description": "A stylish handbag for everyday use.",
+        "price": 129.99,
+        "discountPercentage": 10,
+        "rating": 4.8,
+        "stock": 10,
+        "brand": "Coach",
+        "category": "Women's Accessories",
+        "thumbnail": "https://example.com/images/handbag1.jpg",
+        "images": [
+          "https://example.com/images/handbag1-1.jpg",
+          "https://example.com/images/handbag1-2.jpg",
+          "https://example.com/images/handbag1-3.jpg"
+        ]
+      },
+      {
+        "title": "Modern Laptop",
+        "description": "A powerful laptop for work and play.",
+        "price": 999.99,
+        "discountPercentage": 10,
+        "rating": 4.7,
+        "stock": 8,
+        "brand": "Apple",
+        "category": "Electronics",
+        "thumbnail": "https://example.com/images/laptop1.jpg",
+        "images": [
+          "https://example.com/images/laptop1-1.jpg",
+          "https://example.com/images/laptop1-2.jpg",
+          "https://example.com/images/laptop1-3.jpg"
+        ]
+      },
+      {
+        "title": "Stylish Watch",
+        "description": "A fashionable watch for any occasion.",
+        "price": 69.99,
+        "discountPercentage": 20,
+        "rating": 4.7,
+        "stock": 22,
+        "brand": "Michael Kors",
+        "category": "Watches",
+        "thumbnail": "https://example.com/images/watch3.jpg",
+        "images": [
+          "https://example.com/images/watch1-1.jpg",
+          "https://example.com/images/watch1-2.jpg",
+          "https://example.com/images/watch1-3.jpg"
+        ]
+    }
+  ]
+}
+
+/*
+export async function checkUser(loginInfo) {
+  // Log user data for reference
+  // loginInfo ={email:_emailData, password : _password};
+  //TODO : from  server it will get some info or user (not password)
+  return new Promise(async(resolve,reject)=>{
+    try {
+      const response = await fetch(`http://localhost:8000/auth/login`, {
+        //changed after backend
+        method: "POST",
+        body: JSON.stringify(loginInfo),
+        headers: { "content-type": "application/json" },
+      });
+      if(response.ok){
+        const data = await response.json();
+        resolve({data});
+      }
+      else{
+        const err = await response.json();
+        reject({err})
+      }
+    } catch (error) {
+      reject({error})
+    }
+  })
+}
+
+*/
