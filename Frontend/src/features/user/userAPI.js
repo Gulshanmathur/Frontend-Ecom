@@ -9,9 +9,9 @@ export async function fetchLoggedInUserOrders(userId) {
    }
  } 
 
- export async function fetchLoggedInUser(userId) { 
+ export async function fetchLoggedInUser() { 
   try {
-    const response = await fetch(`http://localhost:8000/users/${userId}`);
+    const response = await fetch(`http://localhost:8000/users/own`);
     const data = await response.json(); 
     return { data }; // Return the data object
   } catch (error) {

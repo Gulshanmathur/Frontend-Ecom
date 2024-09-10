@@ -4,7 +4,7 @@ import { updateUser } from '../user/userAPI';
 // console.log("inside authSlice.js");
 
 const initialState = {
-  loggedInUser: null, // this should only contain user identity 'id'/'role' 
+  loggedInUserToken: null, // this should only contain user identity 'id'/'role' 
   status: 'idle',
   error :null
 };
@@ -57,14 +57,14 @@ export const userSlice = createSlice({
       })
       .addCase(createUserAsync.fulfilled, (state, action) => {
         state.status = 'idle';
-        state.loggedInUser = action.payload;
+        state.loggedInUserToken = action.payload;
       })
       .addCase(checkUserAsync.pending, (state) => {
         state.status = 'loading';
       })
       .addCase(checkUserAsync.fulfilled, (state, action) => {
         state.status = 'idle';
-        state.loggedInUser = action.payload;
+        state.loggedInUserToken = action.payload;
       })
       .addCase(checkUserAsync.rejected, (state, action) => {
         state.status = 'idle';
@@ -75,14 +75,14 @@ export const userSlice = createSlice({
       // })
       // .addCase(updateUserAsync.fulfilled, (state, action) => {
       //   state.status = 'idle';
-      //   state.loggedInUser = action.payload;
+      //   state.loggedInUserToken = action.payload;
       // })
       .addCase(signOutAsync.pending, (state) => {
         state.status = 'loading';
       })
       .addCase(signOutAsync.fulfilled, (state, action) => {
         state.status = 'idle';
-        state.loggedInUser = null
+        state.loggedInUserToken = null
       })
   },
 });
@@ -90,7 +90,7 @@ export const userSlice = createSlice({
 
 
 export const selectloggedInUser  = (state) => {
-  const comingData = state.auth.loggedInUser;
+  const comingData = state.auth.loggedInUserToken;
   return comingData;
 }
 export const selectError  = (state) => {

@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { fetchProductByIdAsync, selectProductById, selectProductListStatus } from '../productListSlice'
 import { useParams } from 'react-router-dom'
 import { addToCartAsync, selectItems } from '../../cart/cartSlice'
-import { selectLoggedInUser } from '../../auth/authSlice'
+// import { selectLoggedInUser } from '../../auth/authSlice'
 import { discountedPrice } from '../../../app/constants'
 import { useAlert } from 'react-alert'
 import { Grid } from 'react-loader-spinner'
@@ -75,7 +75,6 @@ const highlights = [
 export default function ProductDetail() {
   const dispatch = useDispatch();
   const params = useParams();
-  const user = useSelector(selectLoggedInUser);
   const items = useSelector(selectItems);
   const [selectedColor, setSelectedColor] = useState(colors[0])
   const [selectedSize, setSelectedSize] = useState(sizes[2])
@@ -89,7 +88,7 @@ export default function ProductDetail() {
   const handleCart = (e) => {
     e.preventDefault();
     if (items.findIndex(item => item.product.id === product.id) < 0) {
-      const newItem = {product: product.id, quentity: 1, user: user.id };
+      const newItem = {product: product.id, quentity: 1};
       dispatch(addToCartAsync(newItem))
       //TODO: it will be based on server response of backend
       alert.success('Item added to cart')

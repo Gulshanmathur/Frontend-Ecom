@@ -1,10 +1,10 @@
 import { Navigate, NavLink } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import { createUserAsync, selectLoggedInUser } from "../authSlice";
+import { createUserAsync, selectloggedInUser } from "../authSlice";
 function Signup() {
   const dispatch = useDispatch();
-  const user = useSelector(selectLoggedInUser);
+  const user = useSelector(selectloggedInUser);
   const {
     register,
     handleSubmit,

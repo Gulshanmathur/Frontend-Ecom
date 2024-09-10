@@ -16,8 +16,8 @@ export const fetchLoggedInUserOrderAsync  = createAsyncThunk(
 
 export const fetchedLoggedInUserAsync = createAsyncThunk(
   'user/fetchedLoggedInUser',
-  async (id)=>{
-    const response = await fetchLoggedInUser(id);
+  async ()=>{
+    const response = await fetchLoggedInUser();
     return response.data;
   }
 )
@@ -67,4 +67,5 @@ export const userSlice = createSlice({
 //TODO: change orders and address to be independent of user;
 export const selectUserOrders = (state) => state.user.userInfo.orders;
 export const selectUserInfo = (state) => state.user.userInfo;
+export const selectUserInfoStatus = (state) => state.user.status;
 export default userSlice.reducer;

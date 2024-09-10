@@ -15,13 +15,13 @@ export async function addToCart(item) {
    }
  }
 
- export function fetchItemsByUserId(userId) {
+ export function fetchItemsByUserId() {
   // console.log({userId});
   
   return new Promise((resolve) => {
     // TODO: we will not hard-code server URL
     
-    fetch(`http://localhost:8000/cart?user=${userId}`)
+    fetch(`http://localhost:8000/cart`)
       .then((response) => response.json())
       .then((data) => {
         resolve({ data });
@@ -84,10 +84,10 @@ export async function deleteItemFromCart(itemId) {
   }
 }
 
-export async function resetCart(userId) {
+export async function resetCart() {
 
   try {
-    const response = await fetchItemsByUserId(userId);  // to fetch all items
+    const response = await fetchItemsByUserId();  // to fetch all items
     const items = response.data;
     for(let item of items){
       await deleteItemFromCart(item);  //delete item from items one by one

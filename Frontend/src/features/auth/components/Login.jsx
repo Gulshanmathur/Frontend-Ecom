@@ -1,11 +1,11 @@
 import { Link, Navigate, NavLink } from "react-router-dom"
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import { checkUserAsync, selectError, selectLoggedInUser } from "../authSlice";
+import { checkUserAsync, selectError, selectloggedInUser} from "../authSlice";
 export default function Login() {
   const dispatch = useDispatch();
   const error =useSelector(selectError);
-  const user = useSelector(selectLoggedInUser);
+  const user = useSelector(selectloggedInUser);
   const {
     register,
     handleSubmit,
@@ -73,7 +73,7 @@ export default function Login() {
               />
               {errors.password && <p className="text-red-500">{errors.password.message}</p>}
               </div>
-              {error && <p className="text-red-500">{error.message}</p>}
+              {error && <p className="text-red-500">{error || error.message}</p>}
             </div>
 
             <div>

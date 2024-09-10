@@ -4,9 +4,8 @@ import { Bars3Icon, XMarkIcon, ShoppingCartIcon } from '@heroicons/react/24/outl
 import { Link, NavLink } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { selectItems } from '../cart/cartSlice'
-import { current } from '@reduxjs/toolkit'
 import { selectUserInfo } from '../user/userSlice'
-import { selectLoggedInUser } from '../auth/authSlice'
+// import { selectLoggedInUser } from '../auth/authSlice'
 /* eslint-disable react/prop-types */
 // const user = {
 //   name: 'Tom Cook',
@@ -30,9 +29,12 @@ function classNames(...classes) {
 }
 function Navbar({ children }) {
   const items = useSelector(selectItems);
-  const user = useSelector(selectLoggedInUser);
+  const userInfo = useSelector(selectUserInfo);
+  console.log({userInfo});
+  
   return (
-    <div className="min-h-full">
+    <>
+    {userInfo &&<div className="min-h-full">
       <Disclosure as="nav" className="bg-gray-800">
         {({ open }) => (
           <>
@@ -52,7 +54,7 @@ function Navbar({ children }) {
                 <div className="hidden md:block">
                   <div className="ml-4 flex items-center md:ml-6">
                     {navigation.map((item)=>(
-                      item[user.role] ?(
+                      item[userInfo.role] ?(
                       <Link key={item.name}
                          to ={item.link}
                          className={classNames(
@@ -70,8 +72,6 @@ function Navbar({ children }) {
                         type="button"
                         className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
                       >
-
-
                         <ShoppingCartIcon className="h-6 w-6" aria-hidden="true" />
                       </button>
                     </NavLink>
@@ -85,7 +85,7 @@ function Navbar({ children }) {
                         <Menu.Button className="relative flex max-w-xs items-center rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                           <span className="absolute -inset-1.5" />
                           <span className="sr-only">Open user menu</span>
-                          <img className="h-8 w-8 rounded-full" src={user.imageUrl} alt="" />
+                          <img className="h-8 w-8 rounded-full" src={userInfo.imageUrl} alt="" />
                         </Menu.Button>
                       </div>
                       <Transition
@@ -138,12 +138,12 @@ function Navbar({ children }) {
               <div className="border-t border-gray-700 pb-3 pt-4">
                 <div className="flex items-center px-5">
                   <div className="flex-shrink-0">
-                    <img className="h-10 w-10 rounded-full" src={user.imageUrl} alt="" />
+                    <img className="h-10 w-10 rounded-full" src={userInfo.imageUrl} alt="" />
                   </div>
                   <div className="ml-3">
                     {/* // this should come from useInfo from userSlice.js */}
-                    <div className="text-base font-medium leading-none text-white">{user.name}</div>
-                    <div className="text-sm font-medium leading-none text-gray-400">{user.email}</div>
+                    <div className="text-base font-medium leading-none text-white">{userInfo.name}</div>
+                    <div className="text-sm font-medium leading-none text-gray-400">{userInfo.email}</div>
                   </div>
                   <button
                     type="button"
@@ -186,7 +186,8 @@ function Navbar({ children }) {
           {children}
         </div>
       </main>
-    </div>
+    </div>}
+    </>
   )
 }
 

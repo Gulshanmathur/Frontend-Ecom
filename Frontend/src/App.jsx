@@ -12,7 +12,6 @@ import {
   createBrowserRouter,
   RouterProvider, 
 } from "react-router-dom";
-import { selectLoggedInUser } from './features/auth/authSlice';
 import { fetchItemsByUserIdAsync } from './features/cart/cartSlice';
 import OrderSuccesspage from './pages/OrderSuccess';
 import PageNotFound from './pages/404';
@@ -28,6 +27,7 @@ import AdminProductDetailPage from './pages/AdminProdutDetailPage';
 import AdminProductFormPage from './pages/AdminProductFormPage';
 import AdminOrdersPage from './pages/AdminOrdersPage';
 import { positions, Provider, transitions  } from 'react-alert';
+import { selectloggedInUser } from './features/auth/authSlice';
 
 const options = {
   position: positions.BOTTOM_LEFT,
@@ -115,14 +115,16 @@ const router = createBrowserRouter([
   },
 ]);
 function App() {
-  const user = useSelector(selectLoggedInUser);
+  const user = useSelector(selectloggedInUser);
+
+  
   const dispatch = useDispatch();
 
   useEffect(() => {
     if (user) {
-      dispatch(fetchItemsByUserIdAsync(user.id))
+      dispatch(fetchItemsByUserIdAsync())
       //we can get req.user by token on backend so need to give in front-end
-      dispatch(fetchedLoggedInUserAsync(user.id))
+      dispatch(fetchedLoggedInUserAsync())
     }
   }, [dispatch, user])
 
