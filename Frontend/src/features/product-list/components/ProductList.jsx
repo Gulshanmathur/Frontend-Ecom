@@ -379,6 +379,7 @@ function DesktopFilter({ filters, handleFilter }) {
 //pagination was here now moved to common repo
 
 function ProductGrid({ products,status }) {  
+ console.log({products});
  
   return (
     <>

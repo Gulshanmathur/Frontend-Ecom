@@ -18,7 +18,7 @@ export async function createUser(userData) {
   }
 }
 
-export async function checkUser(loginInfo) {
+export async function loginUser(loginInfo) {
   // Log user data for reference
   // loginInfo = { email: _emailData, password: _password };
   // TODO: from server it will get some info or user (not password)  
@@ -30,6 +30,26 @@ export async function checkUser(loginInfo) {
       body: JSON.stringify(loginInfo),
       headers: { "content-type": "application/json" },
     });
+
+    if (response.ok) {
+      const data = await response.json();
+      return { data }; // Return the data directly
+    } else {
+      const err = await response.json();
+      throw new Error(err.message || 'Login failed'); // Throw an error with a message
+    }
+  } catch (error) {
+    throw new Error(error.message || 'An error occurred while logging in'); // Throw an error for the catch block
+  }
+}
+export async function checkAuth() {
+  // Log user data for reference
+  // loginInfo = { email: _emailData, password: _password };
+  // TODO: from server it will get some info or user (not password)  
+
+   
+  try {
+    const response = await fetch(`http://localhost:8000/auth/check`);
 
     if (response.ok) {
       const data = await response.json();

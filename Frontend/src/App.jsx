@@ -10,7 +10,7 @@ import ProductDetailPage from './pages/ProductDetailPage';
 import SignupPage from './pages/SignupPage'
 import {
   createBrowserRouter,
-  RouterProvider, 
+  RouterProvider,
 } from "react-router-dom";
 import { fetchItemsByUserIdAsync } from './features/cart/cartSlice';
 import OrderSuccesspage from './pages/OrderSuccess';
@@ -26,8 +26,8 @@ import AlertTemplate from "react-alert-template-basic";
 import AdminProductDetailPage from './pages/AdminProdutDetailPage';
 import AdminProductFormPage from './pages/AdminProductFormPage';
 import AdminOrdersPage from './pages/AdminOrdersPage';
-import { positions, Provider, transitions  } from 'react-alert';
-import { selectloggedInUser } from './features/auth/authSlice';
+import { positions, Provider, transitions } from 'react-alert';
+import { checkAuthAsync, selectloggedInUser, selectUserChecked } from './features/auth/authSlice';
 
 const options = {
   position: positions.BOTTOM_LEFT,
@@ -116,9 +116,13 @@ const router = createBrowserRouter([
 ]);
 function App() {
   const user = useSelector(selectloggedInUser);
-
-  
+  const userChecked = useSelector(selectUserChecked);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(checkAuthAsync());
+  }, [])
+
 
   useEffect(() => {
     if (user) {
@@ -130,9 +134,10 @@ function App() {
 
   return (
     <>
-      <Provider template={AlertTemplate} {...options}>
+      {userChecked && <Provider template={AlertTemplate} {...options}>
         <RouterProvider router={router} />
       </Provider>
+      }
     </>
   )
 }

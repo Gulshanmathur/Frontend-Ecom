@@ -1,73 +1,76 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { checkUser, createUser, signOut } from './authAPI';
-import { updateUser } from '../user/userAPI';
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createUser, loginUser, signOut,checkAuth } from "./authAPI";
 // console.log("inside authSlice.js");
 
 const initialState = {
-  loggedInUserToken: null, // this should only contain user identity 'id'/'role' 
-  status: 'idle',
-  error :null
+  loggedInUserToken: null, // this should only contain user identity 'id'/'role'
+  status: "idle",
+  error: null,
+  userChecked:false,
 };
 export const createUserAsync = createAsyncThunk(
-  'user/createUser',
-  async (userData) => {    
+  "user/createUser",
+  async (userData) => {
     const response = await createUser(userData);
     return response.data;
   }
 );
-export const checkUserAsync = createAsyncThunk(
-  'user/checkUser', 
+export const loginUserAsync = createAsyncThunk(
+  "user/loginUser",
   async (loginInfo) => {
-     try {
-      const response = await checkUser(loginInfo);  
+    try {
+      const response = await loginUser(loginInfo);
       return response.data;
-     } catch (error) {
+    } catch (error) {
       console.log(error);
-       throw new Error (error.message)
-     }
-    
+      throw new Error(error.message);
+    }
   }
 );
-// export const updateUserAsync = createAsyncThunk(
-//   'update/updateUser',
-//   async (update) => {
-     
-//     const response = await updateUser(update);
-//     return response.data;
-//   }
-// );
+
+export const checkAuthAsync = createAsyncThunk(
+  "user/checkAuth",
+  async () => {
+    try {
+      const response = await checkAuth();
+      return response.data;
+    } catch (error) {
+      console.log(error);
+      throw new Error(error.message);
+    }
+  }
+);
 
 export const signOutAsync = createAsyncThunk(
-  'signout/signOutUser',
+  "signout/signOutUser",
   async (userId) => {
-     
     const response = await signOut(userId);
     return response.data;
   }
 );
 
 export const userSlice = createSlice({
-  name: 'user',
+  name: "user",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(createUserAsync.pending, (state) => {
-        state.status = 'loading';
+        state.status = "loading";
       })
       .addCase(createUserAsync.fulfilled, (state, action) => {
-        state.status = 'idle';
+        state.status = "idle";
         state.loggedInUserToken = action.payload;
       })
-      .addCase(checkUserAsync.pending, (state) => {
-        state.status = 'loading';
+      .addCase(loginUserAsync.pending, (state) => {
+        state.status = "loading";
       })
-      .addCase(checkUserAsync.fulfilled, (state, action) => {
-        state.status = 'idle';
+      .addCase(loginUserAsync.fulfilled, (state, action) => {
+        state.status = "idle";
         state.loggedInUserToken = action.payload;
       })
-      .addCase(checkUserAsync.rejected, (state, action) => {
-        state.status = 'idle';
+      .addCase(loginUserAsync.rejected, (state, action) => {
+        state.status = "idle";
         state.error = action.error;
       })
       // .addCase(updateUserAsync.pending, (state) => {
@@ -78,24 +81,36 @@ export const userSlice = createSlice({
       //   state.loggedInUserToken = action.payload;
       // })
       .addCase(signOutAsync.pending, (state) => {
-        state.status = 'loading';
+        state.status = "loading";
       })
       .addCase(signOutAsync.fulfilled, (state, action) => {
-        state.status = 'idle';
-        state.loggedInUserToken = null
+        state.status = "idle";
+        state.loggedInUserToken = null;
       })
+      .addCase(checkAuthAsync.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(checkAuthAsync.fulfilled, (state, action) => {
+        state.status = "idle";
+        state.loggedInUserToken = action.payload;
+        state.userChecked =true;
+      })
+      .addCase(checkAuthAsync.rejected, (state, action) => {
+        state.status = "idle";
+        state.userChecked = true;
+      });
   },
 });
 
-
-
-export const selectloggedInUser  = (state) => {
+export const selectloggedInUser = (state) => {
   const comingData = state.auth.loggedInUserToken;
   return comingData;
-}
-export const selectError  = (state) => {
+};
+export const selectError = (state) => {
   const comingData = state.auth.error;
   return comingData;
-}
+};
+
+export const selectUserChecked = (state)=> state.auth.userChecked;
 
 export default userSlice.reducer;
