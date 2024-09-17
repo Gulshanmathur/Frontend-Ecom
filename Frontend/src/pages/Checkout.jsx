@@ -29,7 +29,7 @@ function Checkout() {
   } = useForm();
   const handleQuantity = (e, item) => {
     console.log(item);
-    dispatch(updateCartAsync({ id:item.id,quantity: +e.target.value }))
+    dispatch(updateCartAsync({ id: item.id, quantity: +e.target.value }))
   }
   function handleRemove(e, id) {
     dispatch(deleteItemFromCartAsync(id));
@@ -45,7 +45,7 @@ function Checkout() {
   function handleOrder(e) {
     if (selectedAddress && paymentMethod) {
       const order = {
-        items, totalAmount, totalItems, user:user.id, paymentMethod, selectedAddress,
+        items, totalAmount, totalItems, user: user.id, paymentMethod, selectedAddress,
         status: 'pending'  // other status can be delivered and received.
       };
       dispatch(createOrderAsync(order));
@@ -59,7 +59,18 @@ function Checkout() {
   return (
     <>
       {!items.length && <Navigate to={"/"} replace={true}></Navigate>}
-      {currentOrder && <Navigate to={`/order-success/${currentOrder.id}`} replace={true}></Navigate>}
+      {(currentOrder && currentOrder.paymentMethod === 'cash') &&
+        <Navigate
+          to={`/order-success/${currentOrder.id}`}
+          replace={true}
+        ></Navigate>
+        }
+      {(currentOrder && currentOrder.paymentMethod === 'card') &&
+        <Navigate
+          to={`/stripe-checkout/`}
+          replace={true}
+        ></Navigate>
+        }
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-5  mt-3 ">
           {/* checkout details and address */}

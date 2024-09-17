@@ -28,6 +28,7 @@ import AdminProductFormPage from './pages/AdminProductFormPage';
 import AdminOrdersPage from './pages/AdminOrdersPage';
 import { positions, Provider, transitions } from 'react-alert';
 import { checkAuthAsync, selectloggedInUser, selectUserChecked } from './features/auth/authSlice';
+import StripeCheckout from './pages/StripeCheckout';
 
 const options = {
   position: positions.BOTTOM_LEFT,
@@ -99,7 +100,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/profile",
-    element: <UserProfilePage />,
+    element: <Protected><UserProfilePage /></Protected> ,
+  },
+  {
+    path: "/stripe-checkout/",
+    element: <Protected><StripeCheckout /></Protected> ,
   },
   {
     path: "/logout",
