@@ -4,6 +4,7 @@ export async function createOrder(order) {
       method: 'POST',
       body: JSON.stringify(order),
       headers: { 'content-type': 'application/json' },
+      credentials:'include'
     });
     const data = await response.json();
     //TODO : on server it will only return  some info or user (not password)
@@ -39,7 +40,10 @@ export async function fetchAllOrders(sort,pagination) {
   const url = `http://localhost:8000/orders?${queryString}`;
 
   try {
-    const response = await fetch(url);
+    const response = await fetch(url,{
+      header:"GET",
+      credentials:"include",
+    });
     const data = await response.json();    
     // const totalOrders = await response.headers.get('X-Total-Count');
     return { data:{orders:data, totalOrders:100} }; // Return the data object

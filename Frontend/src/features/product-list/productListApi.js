@@ -3,7 +3,10 @@ export function fetchProductById(id) {
   return new Promise((resolve) => {
     // TODO: we will not hard-code server URL
 
-    fetch(`http://localhost:8000/products/${id}`)
+    fetch(`http://localhost:8000/products/${id}`,{
+      method:'GET',
+      credentials:'include'
+    })
       .then((response) => response.json())
       .then((data) => {
         resolve({ data });
@@ -18,6 +21,7 @@ export async function updateProduct(update) {
       method: 'PATCH',
       body: JSON.stringify(update),
       headers: { 'content-type': 'application/json' },
+      credentials:'include'
     });
     const data = await response.json();
     //TODO : on server it will only return  some info or user (not password)
@@ -36,7 +40,8 @@ export function createProduct(product) {
       {
         method :'POST',
         body: JSON.stringify(product),
-        headers: {'content-type': 'application/json'}
+        headers: {'content-type': 'application/json'},
+        credentials:'include'
       }
     )
       .then((response) => response.json())
@@ -77,7 +82,10 @@ export async function fetchProductsByFilter(filter,sort,pagination,admin) {
   if(admin) queryString+= `admin=true`;
   const url = `http://localhost:8000/products?${queryString}`;
   try {
-    const response = await fetch(url);
+    const response = await fetch(url,{
+      method:'GET',
+      credentials:'include'
+    });
     const data = await response.json();
     let totalItems = response.headers.get('X-Total-Count');
     if(totalItems){
@@ -94,7 +102,10 @@ export async function fetchProductsByFilter(filter,sort,pagination,admin) {
 
 export function fetchCategories() {
   return new Promise((resolve) => {
-    fetch(`http://localhost:8000/categories`)
+    fetch(`http://localhost:8000/categories`,{
+      method:'GET',
+      credentials:'include'
+    })
       .then((response) => response.json())
       .then((data) => {
         resolve({ data });
@@ -105,7 +116,10 @@ export function fetchCategories() {
 
 export function fetchBrands() {
   return new Promise((resolve) => {
-    fetch(`http://localhost:8000/brands`)
+    fetch(`http://localhost:8000/brands`,{
+      method:'GET',
+      credentials:'include'
+    })
       .then((response) => response.json())
       .then((data) => {
         resolve({ data });

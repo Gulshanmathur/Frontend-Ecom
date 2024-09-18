@@ -5,6 +5,7 @@ export async function addToCart(item) {
        method: 'POST',
        body: JSON.stringify(item),
        headers: { 'content-type': 'application/json' },
+       credentials:'include'
      });
      const data = await response.json();
      //TODO : on server it will only return  some info or user (not password)
@@ -21,7 +22,10 @@ export async function addToCart(item) {
   return new Promise((resolve) => {
     // TODO: we will not hard-code server URL
     
-    fetch(`http://localhost:8000/cart`)
+    fetch(`http://localhost:8000/cart`,{
+      method:"GET",
+      credentials:'include'
+    })
       .then((response) => response.json())
       .then((data) => {
         resolve({ data });
@@ -68,6 +72,7 @@ export async function deleteItemFromCart(itemId) {
     const response = await fetch(`http://localhost:8000/cart/${id}`, {
       method: 'DELETE',
       headers: { 'content-type': 'application/json' },
+      credentials:'include'
     });
 
     if (!response.ok) {

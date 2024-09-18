@@ -143,7 +143,6 @@ function AdminOrders() {
                                 <td className="px-6 py-4 ">
 
                                     {order.items.map((item, index) => (
-                                        <>
                                             <div className="flex items-center" key={item.id}>
                                                 <div className="mr-2">
                                                     <div key={index} className="text-sm text-gray-900">
@@ -159,7 +158,6 @@ function AdminOrders() {
                                                 </span>
 
                                             </div>
-                                        </>
                                     ))}
                                 </td>
                                 <td className="px-6 py-4 whitespace-nowrap">

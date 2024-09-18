@@ -378,9 +378,7 @@ function DesktopFilter({ filters, handleFilter }) {
 }
 //pagination was here now moved to common repo
 
-function ProductGrid({ products,status }) {  
- console.log({products});
- 
+function ProductGrid({ products,status }) {   
   return (
     <>
       <div className="bg-white">
@@ -396,7 +394,7 @@ function ProductGrid({ products,status }) {
               wrapperStyle={{}}
               wrapperClass="grid-wrapper" 
             /> : null}
-            {products?.map((product) => (
+            {products && products?.map((product) => (
               <Link to={`/product-detail/${product.id}`} key={product.id} >
                 <div key={product.id} className="group relative border-2 p-0.5 border-solid border-gray-200">
                   <div className="min-h-60 aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-60">

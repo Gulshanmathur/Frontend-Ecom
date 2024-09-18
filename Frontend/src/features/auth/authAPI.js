@@ -29,6 +29,7 @@ export async function loginUser(loginInfo) {
       method: "POST",
       body: JSON.stringify(loginInfo),
       headers: { "content-type": "application/json" },
+      credentials: 'include', // Include cookies with the request
     });
 
     if (response.ok) {
@@ -49,7 +50,10 @@ export async function checkAuth() {
 
    
   try {
-    const response = await fetch(`http://localhost:8000/auth/check`);
+    const response = await fetch(`http://localhost:8000/auth/check`,{
+      method:"GET",
+      credentials:'include'
+    });
 
     if (response.ok) {
       const data = await response.json();
@@ -63,14 +67,21 @@ export async function checkAuth() {
   }
 }
 
-export async function signOut(userId) {
-  // Log user data for reference
-
+export async function signOut() {
   try {
-    //TODO : on server we will remove user session info
+    const response = await fetch('http://localhost:8000/auth/signout', {
+      method: 'POST',
+      credentials: 'include', // Include cookies with the request
+    });
 
-    return { data: "success" }; // Return the data object
+    if (!response.ok) {
+      throw new Error('Sign out failed');
+    }
+
+    const data = await response.json();
+    return data; // Return success message or any relevant data
   } catch (error) {
-    console.error(error);
+    console.error('Error signing out:', error);
+    throw error; // Handle error appropriately in your UI
   }
 }

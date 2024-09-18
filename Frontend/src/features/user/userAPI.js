@@ -1,7 +1,10 @@
 export async function fetchLoggedInUserOrders(userId) { 
    try {
                                     //  ?user=${userId}` before update below line
-     const response = await fetch(`http://localhost:8000/orders/user/${userId}`);
+     const response = await fetch(`http://localhost:8000/orders/user/${userId}`,{
+      method:"GET",
+      credentials:"include"
+     });
      const data = await response.json(); 
      return { data }; // Return the data object
    } catch (error) {
@@ -11,7 +14,10 @@ export async function fetchLoggedInUserOrders(userId) {
 
  export async function fetchLoggedInUser() { 
   try {
-    const response = await fetch(`http://localhost:8000/users/own`);
+    const response = await fetch(`http://localhost:8000/users/own`,{
+      method:"GET",
+      credentials:"include"
+    });
     const data = await response.json(); 
     return { data }; // Return the data object
   } catch (error) {
