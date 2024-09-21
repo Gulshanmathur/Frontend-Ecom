@@ -1,5 +1,5 @@
 // src/CheckoutForm.js
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import {
   PaymentElement,
   useStripe,
@@ -8,10 +8,10 @@ import {
 import { useSelector } from 'react-redux';
 import { selectCurrentOrder } from "../features/order/orderSlice";
 
-export default function CheckoutForm() {    
+export default function CheckoutForm() {
   const stripe = useStripe();
   const elements = useElements();
-  const currentOrder = useSelector(selectCurrentOrder);  
+  const currentOrder = useSelector(selectCurrentOrder);
   const [message, setMessage] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -56,12 +56,12 @@ export default function CheckoutForm() {
     }
 
     setIsLoading(true);
-  //http://localhost:8000/order-success/66e82e1256466587cf821cbb
+    //https://mern-ecommerce-backend-wsy2.onrender.com/order-success/66e82e1256466587cf821cbb
     const { error } = await stripe.confirmPayment({
       elements,
       confirmParams: {
         // Make sure to change this to your payment completion page
-        return_url: `http://localhost:8000/order-success/${currentOrder.id}`,
+        return_url: `https://mern-ecommerce-backend-wsy2.onrender.com/order-success/${currentOrder.id}`,
       },
     });
 
@@ -85,7 +85,7 @@ export default function CheckoutForm() {
 
   return (
     <form id="payment-form" onSubmit={handleSubmit}>
-        <PaymentElement id="payment-element" options={paymentElementOptions} />
+      <PaymentElement id="payment-element" options={paymentElementOptions} />
       <button disabled={isLoading || !stripe || !elements} id="submit">
         <span id="button-text">
           {isLoading ? <div className="spinner" id="spinner"></div> : "Pay now"}
