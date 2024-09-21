@@ -136,20 +136,20 @@ function Navbar({ children }) {
                 <div className="border-t border-gray-700 pb-3 pt-4">
                   <div className="flex items-center px-5">
                     <div className="flex-shrink-0">
-                      <img className="h-10 w-10 rounded-full" src={userInfo.imageUrl} alt="" />
+                      <img className="h-10 w-10 rounded-full" src={userInfo.imageUrl} alt="" /> 
                     </div>
                     <div className="ml-3">
                       {/* // this should come from useInfo from userSlice.js */}
                       <div className="text-base font-medium leading-none text-white">{userInfo.name}</div>
                       <div className="text-sm font-medium leading-none text-gray-400">{userInfo.email}</div>
                     </div>
-                    <button
+                    <Link
+                     to={'/cart'}
                       type="button"
                       className="relative ml-auto flex-shrink-0 rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
                     >
-
                       <ShoppingCartIcon className="h-6 w-6" aria-hidden="true" />
-                    </button>
+                    </Link>
                     {items.length > 0 && <span className="inline-flex items-center rounded-md bg-red-50 px-2 py-1 mb-7 -ml-3 z-10 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/10">
                       {items.length}
                     </span>}
@@ -160,10 +160,11 @@ function Navbar({ children }) {
                         key={item.name}
                         as="a"
                         href={item.href}
-                        className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white"
+                        className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white cursor-pointer"
                       >
+                        <Link to={item.link}>
                         {item.name}
-
+                        </Link>
                       </Disclosure.Button>
                     ))}
                   </div>
@@ -173,6 +174,7 @@ function Navbar({ children }) {
           )}
         </Disclosure>
 
+        {/* Brand name of Golokc started here */}
         <header className="bg-white shadow">
           <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
             <Link to="/">

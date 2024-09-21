@@ -17,7 +17,7 @@ export const fetchLoggedInUserOrderAsync  = createAsyncThunk(
 export const fetchedLoggedInUserAsync = createAsyncThunk(
   'user/fetchedLoggedInUser',
   async ()=>{
-    const response = await fetchLoggedInUser();
+    const response = await fetchLoggedInUser();  
     return response.data;
   }
 )
@@ -58,7 +58,7 @@ export const userSlice = createSlice({
       })
       .addCase(fetchedLoggedInUserAsync.fulfilled, (state, action) => {
         state.status = 'idle';
-        //this info can be different or more from logged-in user info
+        //this info can be different or more from logged-in user info      
         state.userInfo = action.payload;  
       });
   },

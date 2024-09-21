@@ -1,5 +1,5 @@
 import { Navigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import {  useSelector } from "react-redux";
 import { selectUserInfo } from "../../user/userSlice";
 import { selectloggedInUser } from "../authSlice";
 
@@ -10,7 +10,7 @@ function ProtectedAdmin({children}) {
     if(!user){
         return <Navigate to="/login" replace={"true"} ></Navigate>
     }
-    if(user && userInfo.role!=='admin'){
+    if(user && user.role!=='admin'){
         return <Navigate to="/" replace={"true"} ></Navigate>
     }
     return children

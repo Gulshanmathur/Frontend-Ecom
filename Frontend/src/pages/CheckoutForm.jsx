@@ -2,7 +2,6 @@
 import { useState,useEffect } from "react";
 import {
   PaymentElement,
-  CardElement,
   useStripe,
   useElements
 } from "@stripe/react-stripe-js";
@@ -62,7 +61,7 @@ export default function CheckoutForm() {
       elements,
       confirmParams: {
         // Make sure to change this to your payment completion page
-        return_url: `http://localhost:8001/order-success/${currentOrder.id}`,
+        return_url: `http://localhost:8000/order-success/${currentOrder.id}`,
       },
     });
 
