@@ -56,7 +56,7 @@ export default function CheckoutForm() {
     }
 
     setIsLoading(true);
-    //https://ecommerce-backend-9ssc.onrender.com/order-success/66e82e1256466587cf821cbb
+    //http://localhost:8000/order-success/66e82e1256466587cf821cbb
     const { error } = await stripe.confirmPayment({
       elements,
       confirmParams: {
