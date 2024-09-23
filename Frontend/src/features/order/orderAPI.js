@@ -1,14 +1,11 @@
 export async function createOrder(order) {
   try {
-    const response = await fetch(
-      "https://mern-ecommerce-backend-wsy2.onrender.com/ordersnow",
-      {
-        method: "POST",
-        body: JSON.stringify(order),
-        headers: { "content-type": "application/json" },
-        credentials: "include",
-      }
-    );
+    const response = await fetch("http://localhost:8000/ordersnow", {
+      method: "POST",
+      body: JSON.stringify(order),
+      headers: { "content-type": "application/json" },
+      credentials: "include",
+    });
     const data = await response.json();
     //TODO : on server it will only return  some info or user (not password)
 
@@ -20,7 +17,7 @@ export async function createOrder(order) {
 export async function updateOrder(order) {
   try {
     const response = await fetch(
-      `https://mern-ecommerce-backend-wsy2.onrender.com/ordersnow/${order.id}`,
+      `http://localhost:8000/ordersnow/${order.id}`,
       {
         method: "PATCH",
         body: JSON.stringify(order),
@@ -43,7 +40,7 @@ export async function fetchAllOrders(sort, pagination) {
   for (let key in pagination) {
     queryString += `${key}=${pagination[key]}&`;
   }
-  const url = `https://mern-ecommerce-backend-wsy2.onrender.com/ordersnow?${queryString}`;
+  const url = `http://localhost:8000/ordersnow?${queryString}`;
 
   try {
     const response = await fetch(url, {

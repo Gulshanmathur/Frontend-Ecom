@@ -56,12 +56,12 @@ export default function CheckoutForm() {
     }
 
     setIsLoading(true);
-    //https://mern-ecommerce-backend-wsy2.onrender.com/order-success/66e82e1256466587cf821cbb
+    //http://localhost:8000/order-success/66e82e1256466587cf821cbb
     const { error } = await stripe.confirmPayment({
       elements,
       confirmParams: {
         // Make sure to change this to your payment completion page
-        return_url: `https://mern-ecommerce-backend-wsy2.onrender.com/order-success/${currentOrder.id}`,
+        return_url: `http://localhost:8001/order-success/${currentOrder.id}`,
       },
     });
 

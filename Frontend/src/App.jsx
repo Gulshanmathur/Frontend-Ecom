@@ -124,13 +124,17 @@ function App() {
   const user = useSelector(selectloggedInUser);
   const userChecked = useSelector(selectUserChecked);
   const dispatch = useDispatch();
-
+   
   useEffect(() => {
     dispatch(checkAuthAsync());
   }, [])
 
+console.log({userChecked});
+console.log({user});
 
   useEffect(() => {
+    
+    
     if (user) {
       dispatch(fetchItemsByUserIdAsync())
       //we can get req.user by token on backend so need to give in front-end

@@ -1,14 +1,11 @@
 export async function addToCart(item) {
   try {
-    const response = await fetch(
-      "https://mern-ecommerce-backend-wsy2.onrender.com/cart",
-      {
-        method: "POST",
-        body: JSON.stringify(item),
-        headers: { "content-type": "application/json" },
-        credentials: "include",
-      }
-    );
+    const response = await fetch("http://localhost:8000/cart", {
+      method: "POST",
+      body: JSON.stringify(item),
+      headers: { "content-type": "application/json" },
+      credentials: "include",
+    });
     const data = await response.json();
     //TODO : on server it will only return  some info or user (not password)
 
@@ -24,7 +21,7 @@ export function fetchItemsByUserId() {
   return new Promise((resolve) => {
     // TODO: we will not hard-code server URL
 
-    fetch(`https://mern-ecommerce-backend-wsy2.onrender.com/cart`, {
+    fetch(`http://localhost:8000/cart`, {
       method: "GET",
       credentials: "include",
     })
@@ -38,14 +35,11 @@ export function fetchItemsByUserId() {
 
 export async function updateCart(update) {
   try {
-    const response = await fetch(
-      `https://mern-ecommerce-backend-wsy2.onrender.com/cart/${update.id}`,
-      {
-        method: "PATCH",
-        body: JSON.stringify(update),
-        headers: { "content-type": "application/json" },
-      }
-    );
+    const response = await fetch(`http://localhost:8000/cart/${update.id}`, {
+      method: "PATCH",
+      body: JSON.stringify(update),
+      headers: { "content-type": "application/json" },
+    });
     const data = await response.json();
     //TODO : on server it will only return  some info or user (not password)
 
@@ -57,7 +51,7 @@ export async function updateCart(update) {
 
 // export async function deleteItemFromCart(itemId) {
 //   try {
-//     const response = await fetch(`https://mern-ecommerce-backend-wsy2.onrender.com/cart/${itemId}`, {
+//     const response = await fetch(`http://localhost:8000/cart/${itemId}`, {
 //       method: 'DELETE',
 //       headers: { 'content-type': 'application/json' },
 //     });
@@ -74,14 +68,11 @@ export async function deleteItemFromCart(itemId) {
     // Ensure itemId is a string
     const id = typeof itemId === "object" ? itemId._id || itemId.id : itemId;
 
-    const response = await fetch(
-      `https://mern-ecommerce-backend-wsy2.onrender.com/cart/${id}`,
-      {
-        method: "DELETE",
-        headers: { "content-type": "application/json" },
-        credentials: "include",
-      }
-    );
+    const response = await fetch(`http://localhost:8000/cart/${id}`, {
+      method: "DELETE",
+      headers: { "content-type": "application/json" },
+      credentials: "include",
+    });
 
     if (!response.ok) {
       // Handle non-200 responses
