@@ -5,7 +5,7 @@ export async function createUser(userData) {
 
   try {
     const response = await fetch(
-      "https://mern-ecommerce-backend-wsy2.onrender.com/auth/signup",
+      "https://ecommerce-backend-9ssc.onrender.com/auth/signup",
       {
         method: "POST",
         body: JSON.stringify(userData),
@@ -29,7 +29,7 @@ export async function loginUser(loginInfo) {
 
   try {
     const response = await fetch(
-      `https://mern-ecommerce-backend-wsy2.onrender.com/auth/login`,
+      `https://ecommerce-backend-9ssc.onrender.com/auth/login`,
       {
         method: "POST",
         body: JSON.stringify(loginInfo),
@@ -57,7 +57,7 @@ export async function checkAuth() {
 
   try {
     const response = await fetch(
-      `https://mern-ecommerce-backend-wsy2.onrender.com/auth/check`,
+      `https://ecommerce-backend-9ssc.onrender.com/auth/check`,
       {
         method: "GET",
         credentials: "include",
@@ -79,7 +79,7 @@ export async function checkAuth() {
 export async function signOut() {
   try {
     const response = await fetch(
-      "https://mern-ecommerce-backend-wsy2.onrender.com/auth/signout",
+      "https://ecommerce-backend-9ssc.onrender.com/auth/signout",
       {
         method: "POST",
         credentials: "include", // Include cookies with the request

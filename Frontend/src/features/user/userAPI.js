@@ -2,7 +2,7 @@ export async function fetchLoggedInUserOrders(userId) {
   try {
     //  ?user=${userId}` before update below line
     const response = await fetch(
-      `https://mern-ecommerce-backend-wsy2.onrender.com/ordersnow/user/${userId}`,
+      `https://ecommerce-backend-9ssc.onrender.com/ordersnow/user/${userId}`,
       {
         method: "GET",
         credentials: "include",
@@ -18,7 +18,7 @@ export async function fetchLoggedInUserOrders(userId) {
 export async function fetchLoggedInUser() {
   try {
     const response = await fetch(
-      `https://mern-ecommerce-backend-wsy2.onrender.com/users/own`,
+      `https://ecommerce-backend-9ssc.onrender.com/users/own`,
       {
         method: "GET",
         credentials: "include",
@@ -36,7 +36,7 @@ export async function updateUser(update) {
 
   try {
     const response = await fetch(
-      `https://mern-ecommerce-backend-wsy2.onrender.com/users/${update.id}`,
+      `https://ecommerce-backend-9ssc.onrender.com/users/${update.id}`,
       {
         method: "PATCH",
         body: JSON.stringify(update),

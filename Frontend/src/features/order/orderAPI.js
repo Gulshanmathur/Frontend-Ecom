@@ -1,7 +1,7 @@
 export async function createOrder(order) {
   try {
     const response = await fetch(
-      "https://mern-ecommerce-backend-wsy2.onrender.com/ordersnow",
+      "https://ecommerce-backend-9ssc.onrender.com/ordersnow",
       {
         method: "POST",
         body: JSON.stringify(order),
@@ -20,7 +20,7 @@ export async function createOrder(order) {
 export async function updateOrder(order) {
   try {
     const response = await fetch(
-      `https://mern-ecommerce-backend-wsy2.onrender.com/ordersnow/${order.id}`,
+      `https://ecommerce-backend-9ssc.onrender.com/ordersnow/${order.id}`,
       {
         method: "PATCH",
         body: JSON.stringify(order),
@@ -43,7 +43,7 @@ export async function fetchAllOrders(sort, pagination) {
   for (let key in pagination) {
     queryString += `${key}=${pagination[key]}&`;
   }
-  const url = `https://mern-ecommerce-backend-wsy2.onrender.com/ordersnow?${queryString}`;
+  const url = `https://ecommerce-backend-9ssc.onrender.com/ordersnow?${queryString}`;
 
   try {
     const response = await fetch(url, {

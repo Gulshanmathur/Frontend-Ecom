@@ -1,7 +1,7 @@
 export async function addToCart(item) {
   try {
     const response = await fetch(
-      "https://mern-ecommerce-backend-wsy2.onrender.com/cart",
+      "https://ecommerce-backend-9ssc.onrender.com/cart",
       {
         method: "POST",
         body: JSON.stringify(item),
@@ -24,7 +24,7 @@ export function fetchItemsByUserId() {
   return new Promise((resolve) => {
     // TODO: we will not hard-code server URL
 
-    fetch(`https://mern-ecommerce-backend-wsy2.onrender.com/cart`, {
+    fetch(`https://ecommerce-backend-9ssc.onrender.com/cart`, {
       method: "GET",
       credentials: "include",
     })
@@ -39,7 +39,7 @@ export function fetchItemsByUserId() {
 export async function updateCart(update) {
   try {
     const response = await fetch(
-      `https://mern-ecommerce-backend-wsy2.onrender.com/cart/${update.id}`,
+      `https://ecommerce-backend-9ssc.onrender.com/cart/${update.id}`,
       {
         method: "PATCH",
         body: JSON.stringify(update),
@@ -57,7 +57,7 @@ export async function updateCart(update) {
 
 // export async function deleteItemFromCart(itemId) {
 //   try {
-//     const response = await fetch(`https://mern-ecommerce-backend-wsy2.onrender.com/cart/${itemId}`, {
+//     const response = await fetch(`https://ecommerce-backend-9ssc.onrender.com/cart/${itemId}`, {
 //       method: 'DELETE',
 //       headers: { 'content-type': 'application/json' },
 //     });
@@ -75,7 +75,7 @@ export async function deleteItemFromCart(itemId) {
     const id = typeof itemId === "object" ? itemId._id || itemId.id : itemId;
 
     const response = await fetch(
-      `https://mern-ecommerce-backend-wsy2.onrender.com/cart/${id}`,
+      `https://ecommerce-backend-9ssc.onrender.com/cart/${id}`,
       {
         method: "DELETE",
         headers: { "content-type": "application/json" },
