@@ -3,7 +3,7 @@ export function fetchProductById(id) {
   return new Promise((resolve) => {
     // TODO: we will not hard-code server URL
 
-    fetch(`http://localhost:8000/products/${id}`, {
+    fetch(`https://mern-ecommerce-backend-wsy2.onrender.com/products/${id}`, {
       method: "GET",
       credentials: "include",
     })
@@ -18,7 +18,7 @@ export function fetchProductById(id) {
 export async function updateProduct(update) {
   try {
     const response = await fetch(
-      `http://localhost:8000/products/${update.id}`,
+      `https://mern-ecommerce-backend-wsy2.onrender.com/products/${update.id}`,
       {
         method: "PATCH",
         body: JSON.stringify(update),
@@ -39,7 +39,7 @@ export function createProduct(product) {
   return new Promise((resolve) => {
     // TODO: we will not hard-code server URL
 
-    fetch(`http://localhost:8000/products/`, {
+    fetch(`https://mern-ecommerce-backend-wsy2.onrender.com/products/`, {
       method: "POST",
       body: JSON.stringify(product),
       headers: { "content-type": "application/json" },
@@ -81,7 +81,7 @@ export async function fetchProductsByFilter(filter, sort, pagination, admin) {
   }
 
   if (admin) queryString += `admin=true`;
-  const url = `http://localhost:8000/products?${queryString}`;
+  const url = `https://mern-ecommerce-backend-wsy2.onrender.com/products?${queryString}`;
   try {
     const response = await fetch(url, {
       method: "GET",
@@ -103,7 +103,7 @@ export async function fetchProductsByFilter(filter, sort, pagination, admin) {
 
 export function fetchCategories() {
   return new Promise((resolve) => {
-    fetch(`http://localhost:8000/categories`, {
+    fetch(`https://mern-ecommerce-backend-wsy2.onrender.com/categories`, {
       method: "GET",
       credentials: "include",
     })
@@ -117,7 +117,7 @@ export function fetchCategories() {
 
 export function fetchBrands() {
   return new Promise((resolve) => {
-    fetch(`http://localhost:8000/brands`, {
+    fetch(`https://mern-ecommerce-backend-wsy2.onrender.com/brands`, {
       method: "GET",
       credentials: "include",
     })
