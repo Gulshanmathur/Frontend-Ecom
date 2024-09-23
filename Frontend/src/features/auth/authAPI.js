@@ -4,11 +4,14 @@ export async function createUser(userData) {
   // Log user data for reference
 
   try {
-    const response = await fetch("http://localhost:8000/auth/signup", {
-      method: "POST",
-      body: JSON.stringify(userData),
-      headers: { "content-type": "application/json" },
-    });
+    const response = await fetch(
+      "https://ecommerce-backend-9ssc.onrender.com/auth/signup",
+      {
+        method: "POST",
+        body: JSON.stringify(userData),
+        headers: { "content-type": "application/json" },
+      }
+    );
     const data = await response.json();
     //TODO : on server it will only return  some info or user (not password)
 
@@ -25,15 +28,20 @@ export async function loginUser(loginInfo) {
   console.log({ loginInfo });
 
   try {
-    const response = await fetch(`http://localhost:8000/auth/login`, {
-      method: "POST",
-      body: JSON.stringify(loginInfo),
-      headers: { "content-type": "application/json" },
-      credentials: "include", // Include cookies with the request
-    });
+    const response = await fetch(
+      `https://ecommerce-backend-9ssc.onrender.com/auth/login`,
+      {
+        method: "POST",
+        body: JSON.stringify(loginInfo),
+        headers: { "content-type": "application/json" },
+        credentials: "include", // Include cookies with the request
+      }
+    );
+    
 
     if (response.ok) {
       const data = await response.json();
+      console.log("inside login",{data});
       return { data }; // Return the data directly
     } else {
       const err = await response.json();
@@ -49,11 +57,15 @@ export async function checkAuth() {
   // TODO: from server it will get some info or user (not password)
 
   try {
-    const response = await fetch(`http://localhost:8000/auth/check`, {
-      method: "GET",
-      credentials: "include",
-    });
-
+    const response = await fetch(
+      `https://ecommerce-backend-9ssc.onrender.com/auth/check`,
+      {
+        method: "GET",
+        credentials: "include",
+      }
+    );
+   
+    
     if (response.ok) {
       const data = await response.json();
       return { data }; // Return the data directly
@@ -68,10 +80,13 @@ export async function checkAuth() {
 
 export async function signOut() {
   try {
-    const response = await fetch("http://localhost:8000/auth/signout", {
-      method: "POST",
-      credentials: "include", // Include cookies with the request
-    });
+    const response = await fetch(
+      "https://ecommerce-backend-9ssc.onrender.com/auth/signout",
+      {
+        method: "POST",
+        credentials: "include", // Include cookies with the request
+      }
+    );
 
     if (!response.ok) {
       throw new Error("Sign out failed");

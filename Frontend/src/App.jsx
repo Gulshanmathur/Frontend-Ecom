@@ -129,8 +129,6 @@ function App() {
     dispatch(checkAuthAsync());
   }, [])
 
-console.log({userChecked});
-console.log({user});
 
   useEffect(() => {
     
