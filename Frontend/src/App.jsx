@@ -128,13 +128,14 @@ function App() {
   useEffect(() => {
     dispatch(checkAuthAsync());
   }, [])
-
+  console.log({user})
+  console.log({userChecked})
 
   useEffect(() => {
     
     
     if (user) {
-      dispatch(fetchItemsByUserIdAsync())
+      dispatch(fetchItemsByUserIdAsync(user.id))
       //we can get req.user by token on backend so need to give in front-end
       dispatch(fetchedLoggedInUserAsync())
     }

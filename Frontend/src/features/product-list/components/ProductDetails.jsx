@@ -9,6 +9,7 @@ import { addToCartAsync, selectItems } from '../../cart/cartSlice'
 import { discountedPrice } from '../../../app/constants'
 import { useAlert } from 'react-alert'
 import { Grid } from 'react-loader-spinner'
+import { selectloggedInUser } from '../../auth/authSlice'
 // const product = {
 //     name: 'Basic Tee 6-Pack',
 //     price: '$192',
@@ -75,6 +76,7 @@ const highlights = [
 export default function ProductDetail() {
   const dispatch = useDispatch();
   const params = useParams();
+  // const user = useSelector(selectloggedInUser);
   const items = useSelector(selectItems);
   const [selectedColor, setSelectedColor] = useState(colors[0])
   const [selectedSize, setSelectedSize] = useState(sizes[2])

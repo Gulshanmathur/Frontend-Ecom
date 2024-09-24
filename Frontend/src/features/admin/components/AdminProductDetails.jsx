@@ -7,6 +7,7 @@ import { useParams } from 'react-router-dom'
 import { addToCartAsync } from '../../cart/cartSlice'
 // import { selectLoggedInUser } from '../../auth/authSlice'
 import { discountedPrice } from '../../../app/constants'
+import { selectloggedInUser } from '../../auth/authSlice'
   // TODO : In sever data will add colors, sizes, highlights. to each product
 const colors = [
   { name: 'White', class: 'bg-white', selectedClass: 'ring-gray-400' },
@@ -35,13 +36,13 @@ const highlights =[
 export default function AdminProductDetails() {
   const dispatch = useDispatch();
   const params = useParams();
-  // const user = useSelector(selectLoggedInUser);
+  // const user = useSelector(selectloggedInUser);
   const [selectedColor, setSelectedColor] = useState(colors[0])
   const [selectedSize, setSelectedSize] = useState(sizes[2])
   const product = useSelector(selectProductById);
   const handleCart = (e)=>{
     e.preventDefault();
-    const newItem = {...product, quentity:1};
+    const newItem = {...product, quantity:1};
     delete newItem['id'];
     dispatch(addToCartAsync(newItem))
   }

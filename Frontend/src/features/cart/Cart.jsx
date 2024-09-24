@@ -14,6 +14,7 @@ export default function Cart() {
   const status = useSelector(selectCartStatus)
   // const [openModal,setOpenModal] = useState(null);
   const handleQuantity = (e, item) => {
+    console.log(e.target.value)
     dispatch(updateCartAsync({ id:item.id, quantity: +e.target.value }))
   }
   function handleRemove(e, id) {
