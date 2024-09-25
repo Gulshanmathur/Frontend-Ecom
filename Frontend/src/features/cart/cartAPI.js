@@ -89,9 +89,9 @@ export async function deleteItemFromCart(itemId) {
   }
 }
 
-export async function resetCart(userId) {
+export async function resetCart() {
   try {
-    const response = await fetchItemsByUserId(userId); // to fetch all items
+    const response = await fetchItemsByUserId(); // to fetch all items
     const items = response.data;
     for (let item of items) {
       await deleteItemFromCart(item); //delete item from items one by one

@@ -43,9 +43,9 @@ export const deleteItemFromCartAsync = createAsyncThunk(
 
 export const resetCartAsync = createAsyncThunk(
   "cart/resetCart",
-  async (userId) => {
+  async () => {
     // item coming from frontend and add into data.json file via
-    const response = await resetCart(userId);
+    const response = await resetCart();
     return response.data;
   }
 );

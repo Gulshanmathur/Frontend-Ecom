@@ -10,10 +10,10 @@ import { selectloggedInUser } from "../features/auth/authSlice"
 function OrderSuccesspage() {
   const params = useParams()
   const dispatch = useDispatch();
-  const user = useSelector(selectloggedInUser);
+  // const user = useSelector(selectloggedInUser);
   
   useEffect(() => {
-    dispatch(resetCartAsync(user.id));
+    dispatch(resetCartAsync());
     dispatch(resetOrder());
 
   }, [dispatch])
