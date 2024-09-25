@@ -54,13 +54,15 @@ export async function checkAuth() {
       method: "GET",
       credentials: "include",
     });
-      console.log({response});
+      
       
     if (response.ok) {
       const data = await response.json();
+      console.log({data});
       return { data }; // Return the data directly
     } else {
       const err = await response.json();
+      console.log("inside auth",err);
       throw new Error(err.message || "Login failed"); // Throw an error with a message
     }
   } catch (error) {
