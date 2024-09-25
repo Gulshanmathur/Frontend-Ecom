@@ -54,7 +54,8 @@ export async function checkAuth() {
       method: "GET",
       credentials: "include",
     });
-
+      console.log({response});
+      
     if (response.ok) {
       const data = await response.json();
       return { data }; // Return the data directly
