@@ -22,8 +22,7 @@ export async function loginUser(loginInfo) {
   // Log user data for reference
   // loginInfo = { email: _emailData, password: _password };
   // TODO: from server it will get some info or user (not password)
-  console.log({ loginInfo });
-
+ 
   try {
     const response = await fetch(`http://localhost:8000/auth/login`, {
       method: "POST",

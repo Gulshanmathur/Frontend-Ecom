@@ -50,7 +50,6 @@ export default function UserProfile() {
 
   function handleRemove(e, index) {
     const newUser = { ...userInfo, addresses: [...userInfo.addresses] } // to avoid shallow copy
-    console.log({ newUser });
     newUser.addresses.splice(index, 1);
     dispatch(updateUserAsync(newUser))
     console.log({ user: userInfo });
