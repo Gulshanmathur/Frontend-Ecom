@@ -15,13 +15,13 @@ export async function addToCart(item,userId) {
   }
 }
 
-export function fetchItemsByUserId(userId) {
+export function fetchItemsByUserId() {
   // console.log({userId});
 
   return new Promise((resolve) => {
     // TODO: we will not hard-code server URL
 
-    fetch(`http://localhost:8000/cart/${userId}`, {
+    fetch(`http://localhost:8000/cart`, {
       method: "GET",
       credentials: "include",
     })

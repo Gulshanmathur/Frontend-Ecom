@@ -135,7 +135,7 @@ function App() {
     
     
     if (user) {
-      dispatch(fetchItemsByUserIdAsync(user.id))
+      dispatch(fetchItemsByUserIdAsync())
       //we can get req.user by token on backend so need to give in front-end
       dispatch(fetchedLoggedInUserAsync(user.id))
     }

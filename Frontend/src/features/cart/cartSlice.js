@@ -16,9 +16,9 @@ export const addToCartAsync = createAsyncThunk(
 
 export const fetchItemsByUserIdAsync = createAsyncThunk(
   "cart/fetchItemsByUserIdAsync",
-  async (userId) => {
+  async () => { 
     // item coming from frontend and add into data.json file via
-    const response = await fetchItemsByUserId(userId);    
+    const response = await fetchItemsByUserId();    
     return response.data;
   }
 );
