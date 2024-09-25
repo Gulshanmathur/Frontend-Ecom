@@ -15,9 +15,9 @@ export async function fetchLoggedInUserOrders(userId) {
   }
 }
 
-export async function fetchLoggedInUser() {
+export async function fetchLoggedInUser(userId) {
   try {
-    const response = await fetch(`http://localhost:8000/users/own`, {
+    const response = await fetch(`http://localhost:8000/users/own/${userId}`, {
       method: "GET",
       credentials: "include",
     });
