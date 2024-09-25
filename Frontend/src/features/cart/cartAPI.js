@@ -21,7 +21,7 @@ export function fetchItemsByUserId(userId) {
   return new Promise((resolve) => {
     // TODO: we will not hard-code server URL
 
-    fetch(`http://localhost:8000/cart`, {
+    fetch(`http://localhost:8000/cart/${userId}`, {
       method: "GET",
       credentials: "include",
     })
