@@ -55,6 +55,8 @@ export default function UserProfile() {
     dispatch(updateUserAsync(newUser))
     console.log({ user: loggedUser });
   }
+  console.log({loggedUser});
+  
   useEffect(() => {
  
     dispatch(fetchedLoggedInUserAsync(loggedUser.id));
@@ -274,7 +276,7 @@ export default function UserProfile() {
                       Choose from existing addresses
                     </p>
                     <ul role="list">
-                      {loggedUser.addresses.map((person, index) => (
+                      {(loggedUser.addresses ?? []).map((person, index) => (
                         <li
                           key={index}
                           className="flex justify-between gap-x-6 py-5 border-solid border-2 border-gray-200 px-5"
@@ -362,7 +364,7 @@ export default function UserProfile() {
           <p className="mt-0.5 text-sm text-gray-500">
             Your Address:
           </p>
-          {loggedUser.addresses.map((address, index) => (
+          {(loggedUser.addresses ?? []).map((address, index) => (
 
             <div key={index}>
               {selectedEditIndex === index && <form action="" className="bg-white"
@@ -560,7 +562,7 @@ export default function UserProfile() {
                       Choose from existing addresses
                     </p>
                     <ul role="list">
-                      {loggedUser.addresses.map((person, index) => (
+                      {(loggedUser.addresses ?? []).map((person, index) => (
                         <li
                           key={index}
                           className="flex justify-between gap-x-6 py-5 border-solid border-2 border-gray-200 px-5"
