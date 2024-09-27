@@ -1,7 +1,7 @@
 // import  React,{ useState } from "react";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchedLoggedInUserAsync, updateUserAsync } from "../userSlice";
+import { fetchedLoggedInUserAsync, selectUserInfo, updateUserAsync } from "../userSlice";
 import { useForm } from "react-hook-form";
 import { selectloggedInUser } from "../../auth/authSlice";
 
@@ -17,12 +17,13 @@ export default function UserProfile() {
     formState: { errors },
   } = useForm();
   const loggedUser = useSelector(selectloggedInUser);
+  const userInfo = useSelector(selectUserInfo)
   const [selectedEditIndex, setSelectedEditIndex] = useState(-1);
   const [paymentMethod, setPaymentMethod] = useState('cash');
   const [showAddAddressForm,setShowAddAddressForm] = useState(false);
   
   function handleEdit(updatedAddress, index) {
-    const newUser = { ...loggedUser, addresses: [...loggedUser.addresses] } // to avoid shallow copy
+    const newUser = { ...userInfo, addresses: [...userInfo.addresses] } // to avoid shallow copy
     console.log({ newUser });
     newUser.addresses.splice(index, 1, updatedAddress);
     dispatch(updateUserAsync(newUser))
@@ -31,7 +32,7 @@ export default function UserProfile() {
 
   function handleEditForm(index) {
     setSelectedEditIndex(index);
-    const address = loggedUser.addresses[index];
+    const address = userInfo.addresses[index];
     setValue("name", address.name);
     setValue("email", address.email);
     setValue("city", address.city);
@@ -43,19 +44,19 @@ export default function UserProfile() {
   }
   
   function handleAdd(address){
-    const newUser = { ...loggedUser, addresses: [...loggedUser.addresses,address] } // to avoid shallow copy
+    const newUser = { ...userInfo, addresses: [...userInfo.addresses,address] } // to avoid shallow copy
     dispatch(updateUserAsync(newUser));
     setShowAddAddressForm(false);
 
   }
 
   function handleRemove(e, index) {
-    const newUser = { ...loggedUser, addresses: [...loggedUser.addresses] } // to avoid shallow copy
+    const newUser = { ...userInfo, addresses: [...userInfo.addresses] } // to avoid shallow copy
     newUser.addresses.splice(index, 1);
     dispatch(updateUserAsync(newUser))
-    console.log({ user: loggedUser });
+    console.log({ user: userInfo });
   }
-  console.log({loggedUser});
+  console.log({userInfo});
   
   useEffect(() => {
  
@@ -68,13 +69,13 @@ export default function UserProfile() {
       <div className="mx-auto bg-white max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mt-8">
           <h1 className=" text-3xl font-bold p-3 sm:my-2 tracking-tight text-gray-900">
-            Name : {loggedUser.name === null ? loggedUser.name : "Anonymous"}
+            Name : {userInfo.name === null ? userInfo.name : "Anonymous"}
           </h1>
           <h3 className=" text-xl font-bold p-3 sm:my-2 tracking-tight text-green-900">
-            email address : {loggedUser.email}
+            email address : {userInfo.email}
           </h3>
-          {loggedUser.role==="admin" && <h3 className=" text-xl font-bold p-3 sm:my-2 tracking-tight text-green-900">
-            role : {loggedUser.role}
+          {userInfo.role==="admin" && <h3 className=" text-xl font-bold p-3 sm:my-2 tracking-tight text-green-900">
+            role : {userInfo.role}
           </h3>}
           <div className="flow-root">
           </div>
@@ -276,7 +277,7 @@ export default function UserProfile() {
                       Choose from existing addresses
                     </p>
                     <ul role="list">
-                      {(loggedUser.addresses ?? []).map((person, index) => (
+                      {(userInfo.addresses ?? []).map((person, index) => (
                         <li
                           key={index}
                           className="flex justify-between gap-x-6 py-5 border-solid border-2 border-gray-200 px-5"
@@ -364,7 +365,7 @@ export default function UserProfile() {
           <p className="mt-0.5 text-sm text-gray-500">
             Your Address:
           </p>
-          {(loggedUser.addresses ?? []).map((address, index) => (
+          {(userInfo.addresses ?? []).map((address, index) => (
 
             <div key={index}>
               {selectedEditIndex === index && <form action="" className="bg-white"
@@ -562,7 +563,7 @@ export default function UserProfile() {
                       Choose from existing addresses
                     </p>
                     <ul role="list">
-                      {(loggedUser.addresses ?? []).map((person, index) => (
+                      {(userInfo.addresses ?? []).map((person, index) => (
                         <li
                           key={index}
                           className="flex justify-between gap-x-6 py-5 border-solid border-2 border-gray-200 px-5"
