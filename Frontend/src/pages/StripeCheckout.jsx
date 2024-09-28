@@ -17,7 +17,7 @@ const StripeCheckout = () => {
     const createPaymentIntent = async () => {
       try {
         // Create a PaymentIntent as soon as the page loads
-        const response = await fetch('http://localhost:8000/create-payment-intent', {
+        const response = await fetch('https://ecommerce-backend-9ssc.onrender.com/create-payment-intent', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ totalAmount: currentOrder.totalAmount, orderId: currentOrder.id }), // Amount in cents

@@ -1,11 +1,14 @@
 export async function addToCart(item) {
   try {
-    const response = await fetch(`http://localhost:8000/cart`, {
-      method: "POST",
-      body: JSON.stringify(item),
-      headers: { "content-type": "application/json" },
-      credentials: "include",
-    });
+    const response = await fetch(
+      `https://ecommerce-backend-9ssc.onrender.com/cart`,
+      {
+        method: "POST",
+        body: JSON.stringify(item),
+        headers: { "content-type": "application/json" },
+        credentials: "include",
+      }
+    );
     const data = await response.json();
     //TODO : on server it will only return  some info or user (not password)
 
@@ -16,19 +19,19 @@ export async function addToCart(item) {
 }
 
 export function fetchItemsByUserId(userId) {
-  console.log({userId});
+  console.log({ userId });
 
   return new Promise((resolve) => {
     // TODO: we will not hard-code server URL
 
-    fetch(`http://localhost:8000/cart/${userId}`, {
+    fetch(`https://ecommerce-backend-9ssc.onrender.com/cart/${userId}`, {
       method: "GET",
       credentials: "include",
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log({data});
-        
+        console.log({ data });
+
         resolve({ data });
       })
       .catch((error) => console.error(error));
@@ -37,12 +40,15 @@ export function fetchItemsByUserId(userId) {
 
 export async function updateCart(update) {
   try {
-    const response = await fetch(`http://localhost:8000/cart/${update.id}`, {
-      method: "PATCH",
-      body: JSON.stringify(update),
-      headers: { "content-type": "application/json" },
-      credentials:"include"
-    });
+    const response = await fetch(
+      `https://ecommerce-backend-9ssc.onrender.com/cart/${update.id}`,
+      {
+        method: "PATCH",
+        body: JSON.stringify(update),
+        headers: { "content-type": "application/json" },
+        credentials: "include",
+      }
+    );
     const data = await response.json();
     //TODO : on server it will only return  some info or user (not password)
 
@@ -54,7 +60,7 @@ export async function updateCart(update) {
 
 // export async function deleteItemFromCart(itemId) {
 //   try {
-//     const response = await fetch(`http://localhost:8000/cart/${itemId}`, {
+//     const response = await fetch(`https://ecommerce-backend-9ssc.onrender.com/cart/${itemId}`, {
 //       method: 'DELETE',
 //       headers: { 'content-type': 'application/json' },
 //     });
@@ -71,11 +77,14 @@ export async function deleteItemFromCart(itemId) {
     // Ensure itemId is a string
     const id = typeof itemId === "object" ? itemId._id || itemId.id : itemId;
 
-    const response = await fetch(`http://localhost:8000/cart/${id}`, {
-      method: "DELETE",
-      headers: { "content-type": "application/json" },
-      credentials: "include",
-    });
+    const response = await fetch(
+      `https://ecommerce-backend-9ssc.onrender.com/cart/${id}`,
+      {
+        method: "DELETE",
+        headers: { "content-type": "application/json" },
+        credentials: "include",
+      }
+    );
 
     if (!response.ok) {
       // Handle non-200 responses
