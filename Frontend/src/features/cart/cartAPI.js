@@ -1,6 +1,6 @@
-export async function addToCart(item,userId) {
+export async function addToCart(item) {
   try {
-    const response = await fetch(`http://localhost:8000/cart/${userId}`, {
+    const response = await fetch(`http://localhost:8000/cart`, {
       method: "POST",
       body: JSON.stringify(item),
       headers: { "content-type": "application/json" },
@@ -27,6 +27,8 @@ export function fetchItemsByUserId(userId) {
     })
       .then((response) => response.json())
       .then((data) => {
+        console.log({data});
+        
         resolve({ data });
       })
       .catch((error) => console.error(error));
@@ -89,9 +91,9 @@ export async function deleteItemFromCart(itemId) {
   }
 }
 
-export async function resetCart() {
+export async function resetCart(userId) {
   try {
-    const response = await fetchItemsByUserId(); // to fetch all items
+    const response = await fetchItemsByUserId(userId); // to fetch all items
     const items = response.data;
     for (let item of items) {
       await deleteItemFromCart(item); //delete item from items one by one

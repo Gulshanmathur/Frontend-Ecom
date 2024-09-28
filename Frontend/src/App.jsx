@@ -63,7 +63,7 @@ const router = createBrowserRouter([
     element: <SignupPage />,
   },
   {
-    path: "/cart",
+    path: "/cart/",
     element: <Protected><CartPage /></Protected>,
   },
   {

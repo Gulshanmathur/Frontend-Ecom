@@ -7,11 +7,14 @@ import { Grid } from "react-loader-spinner";
 
 // import { XMarkIcon } from "@heroicons/react/24/outline";
 export default function Cart() {
+  console.log("inside cart")
   const dispatch = useDispatch();
-  const items = useSelector(selectItems);
+  const items = useSelector(selectItems)??[];
+  console.log(items);
   const totalAmount = items.reduce((amount, item) => discountedPrice(item.product) * item.quantity + amount, 0);
   const totalItems = items.reduce((total, item) => item.quantity + total, 0);
   const status = useSelector(selectCartStatus)
+
   // const [openModal,setOpenModal] = useState(null);
   const handleQuantity = (e, item) => {
     console.log(e.target.value)

@@ -76,25 +76,27 @@ const highlights = [
 export default function ProductDetail() {
   const dispatch = useDispatch();
   const params = useParams();
-  // const user = useSelector(selectloggedInUser);
+  const user = useSelector(selectloggedInUser);
   const items = useSelector(selectItems);
   const [selectedColor, setSelectedColor] = useState(colors[0])
   const [selectedSize, setSelectedSize] = useState(sizes[2])
   const product = useSelector(selectProductById);
   const alert = useAlert();
   const status =useSelector(selectProductListStatus);
+  
   console.log({items});
-  console.log({product});
   
   
   const handleCart = (e) => {
     e.preventDefault();
     if (items.findIndex(item => item.product.id === product.id) < 0) {
-      const newItem = {product: product.id, quentity: 1};
-      dispatch(addToCartAsync(newItem))
+      const newItem = {product: product.id, quantity: 1,user:user.id};
+      console.log({newItem});
+      
+      dispatch(addToCartAsync(newItem)) 
       //TODO: it will be based on server response of backend
       alert.success('Item added to cart')
-    } else {
+    } else {    
       alert.error('Item already added')
 
     }
