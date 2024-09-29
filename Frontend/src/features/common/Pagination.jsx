@@ -9,12 +9,15 @@ export default function Pagination({ page, setPage, handlePage, totalItems }) {
           <a
             href="#"
             className="relative inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+            onClick={()=> handlePage(page > 1 ? page- 1 : page)}
           >
             Previous
           </a>
+          
           <a
             href="#"
             className="relative ml-3 inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+            onClick={()=> handlePage(page < totalPages ? page+ 1 : page)}
           >
             Next
           </a>
